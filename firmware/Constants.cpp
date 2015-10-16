@@ -13,7 +13,7 @@ namespace constants
 const int led_pin = 13;
 const int baudrate = 9600;
 
-const int model_number = 1001;
+const int model_number = 1150;
 const int firmware_number = 1;
 
 const double duration_min = 0.1;
@@ -21,7 +21,7 @@ const double duration_max = 2.5;
 const long count_min = 1;
 const long count_max = 100;
 
-CONSTANT_STRING(device_name,"led_controller");
+CONSTANT_STRING(device_name,"audio_controller");
 CONSTANT_STRING(led_on_method_name,"setLedOn");
 CONSTANT_STRING(led_off_method_name,"setLedOff");
 CONSTANT_STRING(get_led_pin_method_name,"getLedPin");
