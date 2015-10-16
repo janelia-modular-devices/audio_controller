@@ -15,12 +15,12 @@
 
 namespace callbacks
 {
-void setLedOnCallback();
+// void setLedOnCallback();
 
-void setLedOffCallback();
+// void setLedOffCallback();
 
-void getLedPinCallback();
+// void getLedPinCallback();
 
-void blinkLedCallback();
+// void blinkLedCallback();
 }
 #endif

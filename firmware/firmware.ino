@@ -1,4 +1,9 @@
 // audio_controller
+#include <Audio.h>
+#include <Wire.h>
+#include <SPI.h>
+#include <SD.h>
+#include <SerialFlash.h>
 #include "Flash.h"
 #include <EEPROM.h>
 #include "Streaming.h"

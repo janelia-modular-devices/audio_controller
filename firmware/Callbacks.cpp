@@ -26,31 +26,31 @@ namespace callbacks
 // modular_device.getSavedVariableValue type must match the saved variable default type
 // modular_device.setSavedVariableValue type must match the saved variable default type
 
-void setLedOnCallback()
-{
-  non_block_blink.stop();
-  digitalWrite(constants::led_pin, HIGH);
-}
+// void setLedOnCallback()
+// {
+//   non_block_blink.stop();
+//   digitalWrite(constants::led_pin, HIGH);
+// }
 
-void setLedOffCallback()
-{
-  non_block_blink.stop();
-  digitalWrite(constants::led_pin, LOW);
-}
+// void setLedOffCallback()
+// {
+//   non_block_blink.stop();
+//   digitalWrite(constants::led_pin, LOW);
+// }
 
-void getLedPinCallback()
-{
-  modular_device.addToResponse("led_pin",constants::led_pin);
-}
+// void getLedPinCallback()
+// {
+//   modular_device.addToResponse("led_pin",constants::led_pin);
+// }
 
-void blinkLedCallback()
-{
-  double duration_on = modular_device.getParameterValue(constants::duration_on_parameter_name);
-  double duration_off = modular_device.getParameterValue(constants::duration_off_parameter_name);
-  long count = modular_device.getParameterValue(constants::count_parameter_name);
-  non_block_blink.setDurationOn(duration_on);
-  non_block_blink.setDurationOff(duration_off);
-  non_block_blink.setCount(count);
-  non_block_blink.start();
-}
+// void blinkLedCallback()
+// {
+//   double duration_on = modular_device.getParameterValue(constants::duration_on_parameter_name);
+//   double duration_off = modular_device.getParameterValue(constants::duration_off_parameter_name);
+//   long count = modular_device.getParameterValue(constants::count_parameter_name);
+//   non_block_blink.setDurationOn(duration_on);
+//   non_block_blink.setDurationOff(duration_off);
+//   non_block_blink.setCount(count);
+//   non_block_blink.start();
+// }
 }
