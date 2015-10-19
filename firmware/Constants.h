@@ -17,9 +17,9 @@ extern const int baudrate;
 extern const int model_number;
 extern const int firmware_number;
 
-extern const int sdcard_cs_pin;
-extern const int sdcard_mosi_pin;
-extern const int sdcard_sck_pin;
+extern const int sd_card_cs_pin;
+extern const int sd_card_mosi_pin;
+extern const int sd_card_sck_pin;
 
 // extern const double duration_min;
 // extern const double duration_max;
@@ -27,8 +27,8 @@ extern const int sdcard_sck_pin;
 // extern const long count_max;
 
 extern ConstantString device_name;
-// extern ConstantString led_on_method_name;
-// extern ConstantString led_off_method_name;
+extern ConstantString get_sd_card_info_method_name;
+extern ConstantString get_sd_card_wav_paths_method_name;
 // extern ConstantString get_led_pin_method_name;
 // extern ConstantString blink_led_method_name;
 // extern ConstantString duration_on_parameter_name;

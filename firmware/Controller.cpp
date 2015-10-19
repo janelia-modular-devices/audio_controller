@@ -7,6 +7,15 @@
 #include "Controller.h"
 
 
+AudioPlaySdWav           play_wav;
+// Use one of these 3 output types: Digital I2S, Digital S/PDIF, or Analog DAC
+AudioOutputI2S           audio_output;
+//AudioOutputSPDIF       audio_output;
+//AudioOutputAnalog      audio_output;
+AudioConnection          patch_cord1(play_wav, 0, audio_output, 0);
+AudioConnection          patch_cord2(play_wav, 1, audio_output, 1);
+AudioControlSGTL5000     sgtl5000;
+
 Controller::Controller()
 {
 }
@@ -14,9 +23,6 @@ Controller::Controller()
 void Controller::setup()
 {
   // Audio Setup
-  AudioConnection patch_cord1(play_wav_,0,audio_output_,0);
-  AudioConnection patch_cord2(play_wav_,1,audio_output_,1);
-
   // Audio connections require memory to work.  For more
   // detailed information, see the MemoryAndCpuUsage example
   AudioMemory(8);
@@ -24,19 +30,11 @@ void Controller::setup()
   // Comment these out if not using the audio adaptor board.
   // This may wait forever if the SDA & SCL pins lack
   // pullup resistors
-  sgtl5000_1_.enable();
-  sgtl5000_1_.volume(0.5);
+  sgtl5000.enable();
+  sgtl5000.volume(0.5);
 
-  SPI.setMOSI(constants::sdcard_mosi_pin);
-  SPI.setSCK(constants::sdcard_sck_pin);
-  if (!(SD.begin(constants::sdcard_cs_pin))) {
-    // stop here, but print a message repetitively
-    while (1) {
-      Serial.println("Unable to access the SD card");
-      delay(500);
-    }
-  }
-  Serial.println("Accessed the SD card");
+  // Setup SD Card
+  sd_interface_.setup();
 
   // Pin Setup
 
@@ -56,11 +54,11 @@ void Controller::setup()
   // count_parameter.setRange(constants::count_min,constants::count_max);
 
   // Methods
-  // ModularDevice::Method& led_on_method = modular_device.createMethod(constants::led_on_method_name);
-  // led_on_method.attachCallback(callbacks::setLedOnCallback);
+  ModularDevice::Method& get_sd_card_info_method = modular_device.createMethod(constants::get_sd_card_info_method_name);
+  get_sd_card_info_method.attachCallback(callbacks::getSDCardInfoCallback);
 
-  // ModularDevice::Method& led_off_method = modular_device.createMethod(constants::led_off_method_name);
-  // led_off_method.attachCallback(callbacks::setLedOffCallback);
+  ModularDevice::Method& get_sd_card_wav_paths_method = modular_device.createMethod(constants::get_sd_card_wav_paths_method_name);
+  get_sd_card_wav_paths_method.attachCallback(callbacks::getSDCardWavPathsCallback);
 
   // ModularDevice::Method& get_led_pin_method = modular_device.createMethod(constants::get_led_pin_method_name);
   // get_led_pin_method.attachCallback(callbacks::getLedPinCallback);
@@ -78,35 +76,40 @@ void Controller::setup()
 void Controller::update()
 {
   modular_device.handleServerRequests();
-  playFile("SDTEST1.WAV");
-  delay(5000000);
-  playFile("SDTEST2.WAV");
-  delay(500);
-  playFile("SDTEST3.WAV");
-  delay(500);
-  playFile("SDTEST4.WAV");
-  delay(1500);
+  // playFile("SDTEST1.WAV");
+  // delay(500);
+  // playFile("SDTEST2.WAV");
+  // delay(500);
+  // playFile("SDTEST3.WAV");
+  // delay(500);
+  // playFile("SDTEST4.WAV");
+  // delay(1500);
+}
+
+SDInterface& Controller::getSDInterface()
+{
+  return sd_interface_;
 }
 
 void Controller::playFile(const char *filename)
 {
-  Serial.print("Playing file: ");
-  Serial.println(filename);
+  // Serial.print("Playing file: ");
+  // Serial.println(filename);
 
   // Start playing the file.  This sketch continues to
   // run while the file plays.
-  play_wav_.play(filename);
+  play_wav.play(filename);
 
   // A brief delay for the library read WAV info
   // delay(5);
 
   // Simply wait for the file to finish playing.
-  // while (play_wav_.isPlaying()) {
+  // while (play_wav.isPlaying()) {
     // uncomment these lines if you audio shield
     // has the optional volume pot soldered
-    //float vol = analogRead(15);
-    //vol = vol / 1024;
-    // sgtl5000_1.volume(vol);
+  //   float vol = analogRead(15);
+  //   vol = vol / 1024;
+  //   sgtl5000.volume(vol);
   // }
 }
 

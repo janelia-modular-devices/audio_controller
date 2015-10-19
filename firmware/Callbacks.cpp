@@ -26,31 +26,47 @@ namespace callbacks
 // modular_device.getSavedVariableValue type must match the saved variable default type
 // modular_device.setSavedVariableValue type must match the saved variable default type
 
-// void setLedOnCallback()
-// {
-//   non_block_blink.stop();
-//   digitalWrite(constants::led_pin, HIGH);
-// }
+void getSDCardInfoCallback()
+{
+  SDInterface& sd_interface = controller.getSDInterface();
+  modular_device.addKeyToResponse("sd_card_info");
+  modular_device.startResponseObject();
+  modular_device.addBoolToResponse("detected",sd_interface.getDetected());
+  modular_device.addToResponse("type",sd_interface.getType());
+  modular_device.addBoolToResponse("formatted",sd_interface.getFormatted());
+  modular_device.addToResponse("format",sd_interface.getFormat());
+  modular_device.addToResponse("volume_size",sd_interface.getVolumeSize());
+  modular_device.addBoolToResponse("initialized",sd_interface.getInitialized());
+  modular_device.stopResponseObject();
+}
 
-// void setLedOffCallback()
-// {
-//   non_block_blink.stop();
-//   digitalWrite(constants::led_pin, LOW);
-// }
+void addDirectoryToResponse(File dir, int numTabs) {
+  while (true) {
 
-// void getLedPinCallback()
-// {
-//   modular_device.addToResponse("led_pin",constants::led_pin);
-// }
+    File entry =  dir.openNextFile();
+    if (! entry) {
+      // no more files
+      break;
+    }
+    for (uint8_t i = 0; i < numTabs; i++) {
+      Serial.print('\t');
+    }
+    Serial.print(entry.name());
+    if (entry.isDirectory()) {
+      Serial.println("/");
+      printDirectory(entry, numTabs + 1);
+    } else {
+      // files have sizes, directories do not
+      Serial.print("\t\t");
+      Serial.println(entry.size(), DEC);
+    }
+    entry.close();
+  }
+}
 
-// void blinkLedCallback()
-// {
-//   double duration_on = modular_device.getParameterValue(constants::duration_on_parameter_name);
-//   double duration_off = modular_device.getParameterValue(constants::duration_off_parameter_name);
-//   long count = modular_device.getParameterValue(constants::count_parameter_name);
-//   non_block_blink.setDurationOn(duration_on);
-//   non_block_blink.setDurationOff(duration_off);
-//   non_block_blink.setCount(count);
-//   non_block_blink.start();
-// }
+void lsCallback()
+{
+  File root = SD.open("/");
+  printDirectory(root, 0);
+}
 }

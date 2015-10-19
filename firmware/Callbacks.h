@@ -9,15 +9,17 @@
 #define CALLBACKS_H
 #include "JsonParser.h"
 #include "ModularDevice.h"
+#include <SD.h>
+#include "SDInterface.h"
 #include "Constants.h"
 #include "Controller.h"
 
 
 namespace callbacks
 {
-// void setLedOnCallback();
+void getSDCardInfoCallback();
 
-// void setLedOffCallback();
+void lsCallback();
 
 // void getLedPinCallback();
 
