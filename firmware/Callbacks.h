@@ -7,7 +7,7 @@
 // ----------------------------------------------------------------------------
 #ifndef CALLBACKS_H
 #define CALLBACKS_H
-#include "JsonParser.h"
+#include "ArduinoJson.h"
 #include "ModularDevice.h"
 #include <SD.h>
 #include "SDInterface.h"
@@ -19,7 +19,7 @@ namespace callbacks
 {
 void getSDCardInfoCallback();
 
-void lsCallback();
+void getSDCardAudioPathsCallback();
 
 // void getLedPinCallback();
 

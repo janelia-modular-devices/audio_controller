@@ -41,7 +41,7 @@ void Controller::setup()
   // Device Info
   modular_device.setName(constants::device_name);
   modular_device.setModelNumber(constants::model_number);
-  modular_device.setFirmwareNumber(constants::firmware_number);
+  modular_device.setFirmwareVersion(constants::firmware_major,constants::firmware_minor,constants::firmware_patch);
 
   // Saved Variables
 
@@ -57,8 +57,8 @@ void Controller::setup()
   ModularDevice::Method& get_sd_card_info_method = modular_device.createMethod(constants::get_sd_card_info_method_name);
   get_sd_card_info_method.attachCallback(callbacks::getSDCardInfoCallback);
 
-  ModularDevice::Method& get_sd_card_wav_paths_method = modular_device.createMethod(constants::get_sd_card_wav_paths_method_name);
-  get_sd_card_wav_paths_method.attachCallback(callbacks::getSDCardWavPathsCallback);
+  ModularDevice::Method& get_sd_card_audio_paths_method = modular_device.createMethod(constants::get_sd_card_audio_paths_method_name);
+  get_sd_card_audio_paths_method.attachCallback(callbacks::getSDCardAudioPathsCallback);
 
   // ModularDevice::Method& get_led_pin_method = modular_device.createMethod(constants::get_led_pin_method_name);
   // get_led_pin_method.attachCallback(callbacks::getLedPinCallback);

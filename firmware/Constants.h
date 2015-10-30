@@ -12,10 +12,14 @@
 namespace constants
 {
 extern const int led_pin;
-extern const int baudrate;
 
-extern const int model_number;
-extern const int firmware_number;
+extern const unsigned int baudrate;
+
+extern const unsigned int model_number;
+
+extern const unsigned char firmware_major;
+extern const unsigned char firmware_minor;
+extern const unsigned char firmware_patch;
 
 extern const int sd_card_cs_pin;
 extern const int sd_card_mosi_pin;
@@ -28,7 +32,7 @@ extern const int sd_card_sck_pin;
 
 extern ConstantString device_name;
 extern ConstantString get_sd_card_info_method_name;
-extern ConstantString get_sd_card_wav_paths_method_name;
+extern ConstantString get_sd_card_audio_paths_method_name;
 // extern ConstantString get_led_pin_method_name;
 // extern ConstantString blink_led_method_name;
 // extern ConstantString duration_on_parameter_name;

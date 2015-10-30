@@ -11,10 +11,15 @@
 namespace constants
 {
 const int led_pin = 13;
-const int baudrate = 9600;
 
-const int model_number = 1150;
-const int firmware_number = 1;
+const unsigned int baudrate = 9600;
+
+const unsigned int model_number = 1150;
+
+// Use semantic versioning http://semver.org/
+const unsigned char firmware_major = 0;
+const unsigned char firmware_minor = 1;
+const unsigned char firmware_patch = 0;
 
 const int sd_card_cs_pin = 10;
 const int sd_card_mosi_pin = 7;
@@ -27,7 +32,7 @@ const int sd_card_sck_pin = 14;
 
 CONSTANT_STRING(device_name,"audio_controller");
 CONSTANT_STRING(get_sd_card_info_method_name,"getSDCardInfo");
-CONSTANT_STRING(get_sd_card_wav_paths_method_name,"getSDCardWavPaths");
+CONSTANT_STRING(get_sd_card_audio_paths_method_name,"getSDCardAudioPaths");
 // CONSTANT_STRING(get_led_pin_method_name,"getLedPin");
 // CONSTANT_STRING(blink_led_method_name,"blinkLed");
 // CONSTANT_STRING(duration_on_parameter_name,"duration_on");
