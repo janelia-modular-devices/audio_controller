@@ -39,7 +39,7 @@ void getSDCardInfoCallback()
   modular_device.stopResponseObject();
 }
 
-void addDirectoryToResponse(File dir, String pwd)
+void addDirectoryToResponse(File dir, const char *pwd)
 {
   while (true)
   {
@@ -49,25 +49,88 @@ void addDirectoryToResponse(File dir, String pwd)
       // no more files
       break;
     }
-    String full_path = pwd + String(entry.name());
+    char full_path[constants::STRING_LENGTH_PATH];
+    full_path[0] = 0;
+    strcat(full_path,pwd);
+    strcat(full_path,entry.name());
     if (!entry.isDirectory())
     {
-      modular_device.addToResponse(full_path);
+      bool audio_file = false;
+      for (unsigned int i=0;i<constants::AUDIO_EXT_COUNT;++i)
+      {
+        if (strstr(full_path,constants::audio_exts[i]) != NULL)
+        {
+          audio_file = true;
+        }
+      }
+      if (audio_file)
+      {
+        modular_device.addToResponse(full_path);
+      }
     }
     else
     {
+      strcat(full_path,"/");
       addDirectoryToResponse(entry,full_path);
     }
     entry.close();
   }
 }
 
-void getSDCardAudioPathsCallback()
+void getAudioPathsCallback()
 {
   File root = SD.open("/");
   modular_device.addKeyToResponse("audio_paths");
   modular_device.startResponseArray();
-  addDirectoryToResponse(root,String("/"));
+  addDirectoryToResponse(root,constants::sd_prefix);
   modular_device.stopResponseArray();
 }
+
+void playAudioPathCallback()
+{
+  if (!controller.codecEnabled())
+  {
+    modular_device.sendErrorResponse("No audio codec chip detected.");
+  }
+  const char* path = modular_device.getParameterValue(constants::path_parameter_name);
+  if (!controller.isAudioPath(path))
+  {
+    char err_msg[constants::STRING_LENGTH_ERROR_MESSAGE];
+    err_msg[0] = 0;
+    strcat(err_msg,"Invalid audio path: ");
+    strcat(err_msg,path);
+    modular_device.sendErrorResponse(err_msg);
+    return;
+  }
+  bool playing = controller.playPath(path);
+  if (!playing)
+  {
+    char err_msg[constants::STRING_LENGTH_ERROR_MESSAGE];
+    err_msg[0] = 0;
+    strcat(err_msg,"Unable to find audio path: ");
+    strcat(err_msg,path);
+    modular_device.sendErrorResponse(err_msg);
+  }
+}
+
+void isPlayingCallback()
+{
+  modular_device.addToResponse("playing",controller.isPlaying());
+}
+
+void getLastAudioPathPlayedCallback()
+{
+  modular_device.addToResponse("path",controller.getLastAudioPathPlayed());
+}
+
+void setVolumeCallback()
+{
+  if (!controller.codecEnabled())
+  {
+    modular_device.sendErrorResponse("No audio codec chip detected.");
+  }
+  long percent = modular_device.getParameterValue(constants::percent_parameter_name);
+  controller.setVolume(percent);
+}
+
 }

@@ -14,6 +14,8 @@
 #include "Constants.h"
 #include "Callbacks.h"
 
+#include "Streaming.h"
+
 
 class Controller
 {
@@ -22,9 +24,19 @@ public:
   void setup();
   void update();
   SDInterface& getSDInterface();
+  bool codecEnabled();
+  bool isPlaying();
+  const char* getLastAudioPathPlayed();
+  bool isAudioPath(const char* path);
+  bool playPath(const char* path);
+  void setVolume(unsigned int percent);
 private:
+  bool codec_enabled_;
+  bool playing_;
+  char path_played_[constants::STRING_LENGTH_PATH];
   SDInterface sd_interface_;
-  void playFile(const char* filename);
+  void enableAudioCodec();
+  void updatePlaying();
 };
 
 extern Controller controller;

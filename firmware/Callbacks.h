@@ -19,10 +19,15 @@ namespace callbacks
 {
 void getSDCardInfoCallback();
 
-void getSDCardAudioPathsCallback();
+void getAudioPathsCallback();
 
-// void getLedPinCallback();
+void playAudioPathCallback();
 
-// void blinkLedCallback();
+void isPlayingCallback();
+
+void getLastAudioPathPlayedCallback();
+
+void setVolumeCallback();
+
 }
 #endif

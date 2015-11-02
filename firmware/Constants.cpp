@@ -21,22 +21,27 @@ const unsigned char firmware_major = 0;
 const unsigned char firmware_minor = 1;
 const unsigned char firmware_patch = 0;
 
-const int sd_card_cs_pin = 10;
-const int sd_card_mosi_pin = 7;
-const int sd_card_sck_pin = 14;
+const unsigned int sd_card_cs_pin = 10;
+const unsigned int sd_card_mosi_pin = 7;
+const unsigned int sd_card_sck_pin = 14;
 
-// const double duration_min = 0.1;
-// const double duration_max = 2.5;
-// const long count_min = 1;
-// const long count_max = 100;
+const char* const audio_ext_wav = ".WAV";
+const char* const audio_ext_raw = ".RAW";
+const char* const audio_exts[AUDIO_EXT_COUNT] = {audio_ext_wav,audio_ext_raw};
+
+const char* const sd_prefix = "/SD/";
+
+const int percent_min = 0;
+const int percent_max = 100;
+
+CONSTANT_STRING(path_parameter_name,"path");
+CONSTANT_STRING(percent_parameter_name,"percent");
 
 CONSTANT_STRING(device_name,"audio_controller");
 CONSTANT_STRING(get_sd_card_info_method_name,"getSDCardInfo");
-CONSTANT_STRING(get_sd_card_audio_paths_method_name,"getSDCardAudioPaths");
-// CONSTANT_STRING(get_led_pin_method_name,"getLedPin");
-// CONSTANT_STRING(blink_led_method_name,"blinkLed");
-// CONSTANT_STRING(duration_on_parameter_name,"duration_on");
-// CONSTANT_STRING(duration_off_parameter_name,"duration_off");
-// CONSTANT_STRING(count_parameter_name,"count");
-// CONSTANT_STRING(seconds_unit,"seconds");
+CONSTANT_STRING(get_audio_paths_method_name,"getAudioPaths");
+CONSTANT_STRING(play_audio_path_method_name,"playAudioPath");
+CONSTANT_STRING(is_playing_method_name,"isPlaying");
+CONSTANT_STRING(get_last_audio_path_played_method_name,"getLastAudioPathPlayed");
+CONSTANT_STRING(set_volume_method_name,"setVolume");
 }
