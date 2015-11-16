@@ -28,7 +28,7 @@ namespace callbacks
 void getSDCardInfoCallback()
 {
   SDInterface& sd_interface = controller.getSDInterface();
-  modular_device.addKeyToResponse(constants::sd_card_info_return_name);
+  modular_device.addResultKeyToResponse();
   modular_device.startResponseObject();
   modular_device.addToResponse("detected",sd_interface.getDetected());
   modular_device.addToResponse("type",sd_interface.getType());
@@ -80,7 +80,7 @@ void addDirectoryToResponse(File dir, const char *pwd)
 void getAudioPathsCallback()
 {
   File root = SD.open("/");
-  modular_device.addKeyToResponse(constants::audio_paths_return_name);
+  modular_device.addResultKeyToResponse();
   modular_device.startResponseArray();
   addDirectoryToResponse(root,constants::sd_prefix);
   modular_device.stopResponseArray();
@@ -115,12 +115,12 @@ void playAudioPathCallback()
 
 void isPlayingCallback()
 {
-  modular_device.addToResponse(constants::playing_return_name,controller.isPlaying());
+  modular_device.addResultToResponse(controller.isPlaying());
 }
 
 void getLastAudioPathPlayedCallback()
 {
-  modular_device.addToResponse(constants::path_return_name,controller.getLastAudioPathPlayed());
+  modular_device.addResultToResponse(controller.getLastAudioPathPlayed());
 }
 
 void setVolumeCallback()

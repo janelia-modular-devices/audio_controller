@@ -8,6 +8,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #include "ConstantVariable.h"
+#include "GenericSerial.h"
 
 namespace constants
 {
@@ -21,7 +22,7 @@ extern const unsigned int baudrate;
 
 extern const unsigned int model_number;
 
-// extern GenericSerial slave_serial;
+extern GenericSerial1to3 generic_serial2;
 
 extern const unsigned char firmware_major;
 extern const unsigned char firmware_minor;
@@ -44,11 +45,6 @@ extern ConstantString device_name;
 
 extern ConstantString path_parameter_name;
 extern ConstantString percent_parameter_name;
-
-extern ConstantString sd_card_info_return_name;
-extern ConstantString audio_paths_return_name;
-extern ConstantString playing_return_name;
-extern ConstantString path_return_name;
 
 extern ConstantString get_sd_card_info_method_name;
 extern ConstantString get_audio_paths_method_name;

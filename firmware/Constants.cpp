@@ -22,7 +22,7 @@ const unsigned char firmware_major = 0;
 const unsigned char firmware_minor = 1;
 const unsigned char firmware_patch = 0;
 
-// GenericSerial slave_serial(Serial2);
+GenericSerial1to3 generic_serial2(Serial2);
 
 const unsigned int sd_card_cs_pin = 10;
 const unsigned int sd_card_mosi_pin = 7;
@@ -41,11 +41,6 @@ CONSTANT_STRING(device_name,"audio_controller");
 
 CONSTANT_STRING(path_parameter_name,"path");
 CONSTANT_STRING(percent_parameter_name,"percent");
-
-CONSTANT_STRING(sd_card_info_return_name,"sd_card_info");
-CONSTANT_STRING(audio_paths_return_name,"audio_paths");
-CONSTANT_STRING(playing_return_name,"playing");
-CONSTANT_STRING(path_return_name,"path");
 
 CONSTANT_STRING(get_sd_card_info_method_name,"getSDCardInfo");
 CONSTANT_STRING(get_audio_paths_method_name,"getAudioPaths");
