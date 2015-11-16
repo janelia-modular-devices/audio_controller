@@ -21,6 +21,8 @@ extern const unsigned int baudrate;
 
 extern const unsigned int model_number;
 
+// extern GenericSerial slave_serial;
+
 extern const unsigned char firmware_major;
 extern const unsigned char firmware_minor;
 extern const unsigned char firmware_patch;
@@ -38,10 +40,16 @@ extern const char* const sd_prefix;
 extern const int percent_min;
 extern const int percent_max;
 
+extern ConstantString device_name;
+
 extern ConstantString path_parameter_name;
 extern ConstantString percent_parameter_name;
 
-extern ConstantString device_name;
+extern ConstantString sd_card_info_return_name;
+extern ConstantString audio_paths_return_name;
+extern ConstantString playing_return_name;
+extern ConstantString path_return_name;
+
 extern ConstantString get_sd_card_info_method_name;
 extern ConstantString get_audio_paths_method_name;
 extern ConstantString play_audio_path_method_name;

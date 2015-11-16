@@ -77,12 +77,12 @@ License:
     {
       "name":"getSDCardInfo",
       "parameters":[],
-      "return":null
+      "return":"object"
     },
     {
       "name":"getAudioPaths",
       "parameters":[],
-      "return":null
+      "return":"array"
     },
     {
       "name":"playAudioPath",
@@ -97,12 +97,12 @@ License:
     {
       "name":"isPlaying",
       "parameters":[],
-      "return":null
+      "return":"bool"
     },
     {
       "name":"getLastAudioPathPlayed",
       "parameters":[],
-      "return":null
+      "return":"string"
     },
     {
       "name":"setVolume",

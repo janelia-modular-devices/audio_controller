@@ -42,6 +42,9 @@ void Controller::setup()
   modular_device.setModelNumber(constants::model_number);
   modular_device.setFirmwareVersion(constants::firmware_major,constants::firmware_minor,constants::firmware_patch);
 
+  // Slave Serial
+  // modular_device.addSlaveSerial(constants::slave_serial);
+
   // Saved Variables
 
   // Parameters
@@ -54,9 +57,11 @@ void Controller::setup()
   // Methods
   ModularDevice::Method& get_sd_card_info_method = modular_device.createMethod(constants::get_sd_card_info_method_name);
   get_sd_card_info_method.attachCallback(callbacks::getSDCardInfoCallback);
+  get_sd_card_info_method.setReturnTypeObject();
 
   ModularDevice::Method& get_audio_paths_method = modular_device.createMethod(constants::get_audio_paths_method_name);
   get_audio_paths_method.attachCallback(callbacks::getAudioPathsCallback);
+  get_audio_paths_method.setReturnTypeArray();
 
   ModularDevice::Method& play_audio_path_method = modular_device.createMethod(constants::play_audio_path_method_name);
   play_audio_path_method.attachCallback(callbacks::playAudioPathCallback);
@@ -64,9 +69,11 @@ void Controller::setup()
 
   ModularDevice::Method& is_playing_method = modular_device.createMethod(constants::is_playing_method_name);
   is_playing_method.attachCallback(callbacks::isPlayingCallback);
+  is_playing_method.setReturnTypeBool();
 
   ModularDevice::Method& get_last_audio_path_played_method = modular_device.createMethod(constants::get_last_audio_path_played_method_name);
   get_last_audio_path_played_method.attachCallback(callbacks::getLastAudioPathPlayedCallback);
+  get_last_audio_path_played_method.setReturnTypeString();
 
   ModularDevice::Method& set_volume_method = modular_device.createMethod(constants::set_volume_method_name);
   set_volume_method.attachCallback(callbacks::setVolumeCallback);
