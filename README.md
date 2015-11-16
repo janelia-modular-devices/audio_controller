@@ -37,7 +37,7 @@ License:
     "getLastAudioPathPlayed",
     "setVolume"
   ],
-  "status":success
+  "status":"success"
 }
 ```
 
@@ -59,7 +59,8 @@ License:
   "methods":[
     {
       "name":"resetDefaults",
-      "parameters":[]
+      "parameters":[],
+      "return":null
     },
     {
       "name":"setSerialNumber",
@@ -70,15 +71,18 @@ License:
           "min":0,
           "max":65535
         }
-      ]
+      ],
+      "return":null
     },
     {
       "name":"getSDCardInfo",
-      "parameters":[]
+      "parameters":[],
+      "return":null
     },
     {
       "name":"getAudioPaths",
-      "parameters":[]
+      "parameters":[],
+      "return":null
     },
     {
       "name":"playAudioPath",
@@ -87,15 +91,18 @@ License:
           "name":"path",
           "type":"string"
         }
-      ]
+      ],
+      "return":null
     },
     {
       "name":"isPlaying",
-      "parameters":[]
+      "parameters":[],
+      "return":null
     },
     {
       "name":"getLastAudioPathPlayed",
-      "parameters":[]
+      "parameters":[],
+      "return":null
     },
     {
       "name":"setVolume",
@@ -106,10 +113,11 @@ License:
           "min":0,
           "max":100
         }
-      ]
+      ],
+      "return":null
     }
   ],
-  "status":success
+  "status":"success"
 }
 ```
 
