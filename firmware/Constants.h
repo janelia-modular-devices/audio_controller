@@ -8,7 +8,6 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #include "ConstantVariable.h"
-#include "GenericSerial.h"
 
 namespace constants
 {
@@ -22,7 +21,7 @@ extern const unsigned int baudrate;
 
 extern const unsigned int model_number;
 
-extern GenericSerial1to3 generic_serial2;
+extern HardwareSerial serial2;
 
 extern const unsigned char firmware_major;
 extern const unsigned char firmware_minor;

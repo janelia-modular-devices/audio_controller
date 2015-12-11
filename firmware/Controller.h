@@ -10,7 +10,7 @@
 #include <Wire.h>
 #include <SerialFlash.h>
 #include "SDInterface.h"
-#include "ModularDevice.h"
+#include "ModularServer.h"
 #include "Constants.h"
 #include "Callbacks.h"
 

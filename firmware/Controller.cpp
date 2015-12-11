@@ -38,54 +38,58 @@ void Controller::setup()
   // Pin Setup
 
   // Device Info
-  modular_device.setName(constants::device_name);
-  modular_device.setModelNumber(constants::model_number);
-  modular_device.setFirmwareVersion(constants::firmware_major,constants::firmware_minor,constants::firmware_patch);
+  modular_server.setName(constants::device_name);
+  modular_server.setModelNumber(constants::model_number);
+  modular_server.setFirmwareVersion(constants::firmware_major,constants::firmware_minor,constants::firmware_patch);
 
-  // Server Serial
-  modular_device.addServerSerial(constants::generic_serial2);
+  // Add Server Streams
+  modular_server.addServerStream(constants::serial2);
 
   // Saved Variables
 
   // Parameters
-  ModularDevice::Parameter& path_parameter = modular_device.createParameter(constants::path_parameter_name);
+  ModularDevice::Parameter& path_parameter = modular_server.createParameter(constants::path_parameter_name);
   path_parameter.setTypeString();
 
-  ModularDevice::Parameter& percent_parameter = modular_device.createParameter(constants::percent_parameter_name);
+  ModularDevice::Parameter& percent_parameter = modular_server.createParameter(constants::percent_parameter_name);
   percent_parameter.setRange(constants::percent_min,constants::percent_max);
 
   // Methods
-  ModularDevice::Method& get_sd_card_info_method = modular_device.createMethod(constants::get_sd_card_info_method_name);
+  ModularDevice::Method& get_sd_card_info_method = modular_server.createMethod(constants::get_sd_card_info_method_name);
   get_sd_card_info_method.attachCallback(callbacks::getSDCardInfoCallback);
   get_sd_card_info_method.setReturnTypeObject();
 
-  ModularDevice::Method& get_audio_paths_method = modular_device.createMethod(constants::get_audio_paths_method_name);
+  ModularDevice::Method& get_audio_paths_method = modular_server.createMethod(constants::get_audio_paths_method_name);
   get_audio_paths_method.attachCallback(callbacks::getAudioPathsCallback);
   get_audio_paths_method.setReturnTypeArray();
 
-  ModularDevice::Method& play_audio_path_method = modular_device.createMethod(constants::play_audio_path_method_name);
+  ModularDevice::Method& play_audio_path_method = modular_server.createMethod(constants::play_audio_path_method_name);
   play_audio_path_method.attachCallback(callbacks::playAudioPathCallback);
   play_audio_path_method.addParameter(path_parameter);
 
-  ModularDevice::Method& is_playing_method = modular_device.createMethod(constants::is_playing_method_name);
+  ModularDevice::Method& is_playing_method = modular_server.createMethod(constants::is_playing_method_name);
   is_playing_method.attachCallback(callbacks::isPlayingCallback);
   is_playing_method.setReturnTypeBool();
 
-  ModularDevice::Method& get_last_audio_path_played_method = modular_device.createMethod(constants::get_last_audio_path_played_method_name);
+  ModularDevice::Method& get_last_audio_path_played_method = modular_server.createMethod(constants::get_last_audio_path_played_method_name);
   get_last_audio_path_played_method.attachCallback(callbacks::getLastAudioPathPlayedCallback);
   get_last_audio_path_played_method.setReturnTypeString();
 
-  ModularDevice::Method& set_volume_method = modular_device.createMethod(constants::set_volume_method_name);
+  ModularDevice::Method& set_volume_method = modular_server.createMethod(constants::set_volume_method_name);
   set_volume_method.attachCallback(callbacks::setVolumeCallback);
   set_volume_method.addParameter(percent_parameter);
 
-  // Start ModularDevice Server
-  modular_device.startServer(constants::baudrate);
+  // Setup Streams
+  Serial.begin(constants::baudrate);
+  constants::serial2.begin(constants::baudrate);
+
+  // Start Modular Device Server
+  modular_server.startServer();
 }
 
 void Controller::update()
 {
-  modular_device.handleServerRequests();
+  modular_server.handleServerRequests();
   updatePlaying();
 }
 

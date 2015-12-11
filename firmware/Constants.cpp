@@ -6,7 +6,6 @@
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
 #include "Constants.h"
-#include "GenericSerial.h"
 
 
 namespace constants
@@ -22,7 +21,7 @@ const unsigned char firmware_major = 0;
 const unsigned char firmware_minor = 1;
 const unsigned char firmware_patch = 0;
 
-GenericSerial1to3 generic_serial2(Serial2);
+HardwareSerial serial2(Serial2);
 
 const unsigned int sd_card_cs_pin = 10;
 const unsigned int sd_card_mosi_pin = 7;

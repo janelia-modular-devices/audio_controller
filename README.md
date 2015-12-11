@@ -80,10 +80,7 @@ License:
     {
       "name":"playAudioPath",
       "parameters":[
-        {
-          "name":"path",
-          "type":"string"
-        }
+        "path"
       ],
       "result_type":null
     },
@@ -100,14 +97,27 @@ License:
     {
       "name":"setVolume",
       "parameters":[
-        {
-          "name":"percent",
-          "type":"long",
-          "min":0,
-          "max":100
-        }
+        "percent"
       ],
       "result_type":null
+    }
+  ],
+  "parameters":[
+    {
+      "name":"serial_number",
+      "type":"long",
+      "min":0,
+      "max":65535
+    },
+    {
+      "name":"path",
+      "type":"string"
+    },
+    {
+      "name":"percent",
+      "type":"long",
+      "min":0,
+      "max":100
     }
   ],
   "status":"success"

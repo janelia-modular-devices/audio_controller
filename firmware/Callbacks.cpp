@@ -12,7 +12,7 @@ namespace callbacks
 {
 // Callbacks must be non-blocking (avoid 'delay')
 //
-// modular_device.getParameterValue must be cast to either:
+// modular_server.getParameterValue must be cast to either:
 // const char*
 // long
 // double
@@ -22,21 +22,21 @@ namespace callbacks
 //
 // For more info read about ArduinoJson parsing https://github.com/janelia-arduino/ArduinoJson
 //
-// modular_device.getSavedVariableValue type must match the saved variable default type
-// modular_device.setSavedVariableValue type must match the saved variable default type
+// modular_server.getSavedVariableValue type must match the saved variable default type
+// modular_server.setSavedVariableValue type must match the saved variable default type
 
 void getSDCardInfoCallback()
 {
   SDInterface& sd_interface = controller.getSDInterface();
-  modular_device.addResultKeyToResponse();
-  modular_device.startResponseObject();
-  modular_device.addToResponse("detected",sd_interface.getDetected());
-  modular_device.addToResponse("type",sd_interface.getType());
-  modular_device.addToResponse("formatted",sd_interface.getFormatted());
-  modular_device.addToResponse("format",sd_interface.getFormat());
-  modular_device.addToResponse("volume_size",sd_interface.getVolumeSize());
-  modular_device.addToResponse("initialized",sd_interface.getInitialized());
-  modular_device.stopResponseObject();
+  modular_server.writeResultKeyToResponse();
+  modular_server.beginResponseObject();
+  modular_server.writeToResponse("detected",sd_interface.getDetected());
+  modular_server.writeToResponse("type",sd_interface.getType());
+  modular_server.writeToResponse("formatted",sd_interface.getFormatted());
+  modular_server.writeToResponse("format",sd_interface.getFormat());
+  modular_server.writeToResponse("volume_size",sd_interface.getVolumeSize());
+  modular_server.writeToResponse("initialized",sd_interface.getInitialized());
+  modular_server.endResponseObject();
 }
 
 void addDirectoryToResponse(File dir, const char *pwd)
@@ -65,7 +65,7 @@ void addDirectoryToResponse(File dir, const char *pwd)
       }
       if (audio_file)
       {
-        modular_device.addToResponse(full_path);
+        modular_server.writeToResponse(full_path);
       }
     }
     else
@@ -80,26 +80,26 @@ void addDirectoryToResponse(File dir, const char *pwd)
 void getAudioPathsCallback()
 {
   File root = SD.open("/");
-  modular_device.addResultKeyToResponse();
-  modular_device.startResponseArray();
+  modular_server.writeResultKeyToResponse();
+  modular_server.beginResponseArray();
   addDirectoryToResponse(root,constants::sd_prefix);
-  modular_device.stopResponseArray();
+  modular_server.endResponseArray();
 }
 
 void playAudioPathCallback()
 {
   if (!controller.codecEnabled())
   {
-    modular_device.sendErrorResponse("No audio codec chip detected.");
+    modular_server.sendErrorResponse("No audio codec chip detected.");
   }
-  const char* path = modular_device.getParameterValue(constants::path_parameter_name);
+  const char* path = modular_server.getParameterValue(constants::path_parameter_name);
   if (!controller.isAudioPath(path))
   {
     char err_msg[constants::STRING_LENGTH_ERROR_MESSAGE];
     err_msg[0] = 0;
     strcat(err_msg,"Invalid audio path: ");
     strcat(err_msg,path);
-    modular_device.sendErrorResponse(err_msg);
+    modular_server.sendErrorResponse(err_msg);
     return;
   }
   bool playing = controller.playPath(path);
@@ -109,27 +109,27 @@ void playAudioPathCallback()
     err_msg[0] = 0;
     strcat(err_msg,"Unable to find audio path: ");
     strcat(err_msg,path);
-    modular_device.sendErrorResponse(err_msg);
+    modular_server.sendErrorResponse(err_msg);
   }
 }
 
 void isPlayingCallback()
 {
-  modular_device.addResultToResponse(controller.isPlaying());
+  modular_server.writeResultToResponse(controller.isPlaying());
 }
 
 void getLastAudioPathPlayedCallback()
 {
-  modular_device.addResultToResponse(controller.getLastAudioPathPlayed());
+  modular_server.writeResultToResponse(controller.getLastAudioPathPlayed());
 }
 
 void setVolumeCallback()
 {
   if (!controller.codecEnabled())
   {
-    modular_device.sendErrorResponse("No audio codec chip detected.");
+    modular_server.sendErrorResponse("No audio codec chip detected.");
   }
-  long percent = modular_device.getParameterValue(constants::percent_parameter_name);
+  long percent = modular_server.getParameterValue(constants::percent_parameter_name);
   controller.setVolume(percent);
 }
 
