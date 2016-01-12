@@ -23,6 +23,8 @@ public:
   Controller();
   void setup();
   void update();
+  ModularDevice::ModularServer& getModularServer();
+
   SDInterface& getSDInterface();
   bool codecEnabled();
   bool isPlaying();
@@ -31,6 +33,11 @@ public:
   bool playPath(const char* path);
   void setVolume(unsigned int percent);
 private:
+  ModularDevice::ModularServer modular_server_;
+  SavedVariable saved_variables_[constants::SAVED_VARIABLE_COUNT_MAX];
+  ModularDevice::Parameter parameters_[constants::PARAMETER_COUNT_MAX];
+  ModularDevice::Method methods_[constants::METHOD_COUNT_MAX];
+
   bool codec_enabled_;
   bool playing_;
   char path_played_[constants::STRING_LENGTH_PATH];
