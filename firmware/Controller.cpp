@@ -7,14 +7,21 @@
 #include "Controller.h"
 
 
-AudioPlaySdWav           g_play_sd_wav;
+AudioPlaySdRaw g_play_sd_raw;
+AudioPlaySdWav g_play_sd_wav;
 // Use one of these 3 output types: Digital I2S, Digital S/PDIF, or Analog DAC
-AudioOutputI2S           g_audio_output;
-//AudioOutputSPDIF       g_audio_output;
-//AudioOutputAnalog      g_audio_output;
-AudioConnection          g_patch_cord1(g_play_sd_wav, 0, g_audio_output, 0);
-AudioConnection          g_patch_cord2(g_play_sd_wav, 1, g_audio_output, 1);
-AudioControlSGTL5000     g_sgtl5000;
+AudioOutputI2S g_audio_output;
+//AudioOutputSPDIF g_audio_output;
+//AudioOutputAnalog g_audio_output;
+AudioMixer4 mix0;
+AudioMixer4 mix1;
+AudioConnection g_patch_cord0(g_play_sd_raw, 0, mix0, 0);
+AudioConnection g_patch_cord1(g_play_sd_wav, 0, mix0, 1);
+AudioConnection g_patch_cord2(g_play_sd_raw, 1, mix1, 0);
+AudioConnection g_patch_cord3(g_play_sd_wav, 1, mix1, 1);
+AudioConnection g_patch_cord4(mix0, 0, g_audio_output, 0);
+AudioConnection g_patch_cord5(mix1, 0, g_audio_output, 1);
+AudioControlSGTL5000 g_sgtl5000;
 
 Controller::Controller()
 {
@@ -150,18 +157,31 @@ bool Controller::playPath(const char *path)
     sd_path = path_upper;
   }
 
-  bool wav_path = false;
-  char *wav_ext = strstr(path_upper,constants::audio_ext_wav);
-  if (wav_ext != NULL)
+  bool playing = false;
+
+  char *raw_ext = strstr(path_upper,constants::audio_ext_raw);
+  if (raw_ext != NULL)
   {
-    wav_path = true;
+    file_type_playing_ = constants::RAW_TYPE;
+    if (sd_specified)
+    {
+      playing = g_play_sd_raw.play(sd_path);
+    }
   }
 
-  bool playing = false;
-  if (sd_specified && wav_path)
+  if (!playing)
   {
-    playing = g_play_sd_wav.play(sd_path);
+    char *wav_ext = strstr(path_upper,constants::audio_ext_wav);
+    if (wav_ext != NULL)
+    {
+      file_type_playing_ = constants::WAV_TYPE;
+      if (sd_specified)
+      {
+        playing = g_play_sd_wav.play(sd_path);
+      }
+    }
   }
+
   playing_ = playing;
   if (playing)
   {
@@ -177,8 +197,8 @@ void Controller::enableAudioCodec()
   pinMode(SCL, INPUT);
   if (digitalRead(SDA) && digitalRead(SCL))
   {
-  // This may wait forever if the SDA & SCL pins lack
-  // pullup resistors so check first
+    // This may wait forever if the SDA & SCL pins lack
+    // pullup resistors so check first
     g_sgtl5000.enable();
     g_sgtl5000.volume(0.5);
     codec_enabled_ = true;
@@ -202,7 +222,15 @@ const char* Controller::getLastAudioPathPlayed()
 
 void Controller::updatePlaying()
 {
-  playing_ = g_play_sd_wav.isPlaying();
+  switch (file_type_playing_)
+  {
+    case constants::RAW_TYPE:
+      playing_ = g_play_sd_raw.isPlaying();
+      break;
+    case constants::WAV_TYPE:
+      playing_ = g_play_sd_wav.isPlaying();
+      break;
+  }
 }
 
 void Controller::setVolume(unsigned int percent)

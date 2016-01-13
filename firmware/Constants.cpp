@@ -27,9 +27,9 @@ const unsigned int sd_card_cs_pin = 10;
 const unsigned int sd_card_mosi_pin = 7;
 const unsigned int sd_card_sck_pin = 14;
 
-const char* const audio_ext_wav = ".WAV";
 const char* const audio_ext_raw = ".RAW";
-const char* const audio_exts[AUDIO_EXT_COUNT] = {audio_ext_wav,audio_ext_raw};
+const char* const audio_ext_wav = ".WAV";
+const char* const audio_exts[AUDIO_EXT_COUNT] = {audio_ext_raw, audio_ext_wav};
 
 const char* const sd_prefix = "/SD/";
 

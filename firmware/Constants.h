@@ -36,9 +36,14 @@ extern const unsigned int sd_card_cs_pin;
 extern const unsigned int sd_card_mosi_pin;
 extern const unsigned int sd_card_sck_pin;
 
-extern const char* const audio_ext_wav;
 extern const char* const audio_ext_raw;
+extern const char* const audio_ext_wav;
 extern const char* const audio_exts[AUDIO_EXT_COUNT];
+enum audio_file_t
+  {
+    RAW_TYPE,
+    WAV_TYPE
+  };
 
 extern const char* const sd_prefix;
 

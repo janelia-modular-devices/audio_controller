@@ -39,6 +39,7 @@ private:
   ModularDevice::Method methods_[constants::METHOD_COUNT_MAX];
 
   bool codec_enabled_;
+  constants::audio_file_t file_type_playing_;
   bool playing_;
   char path_played_[constants::STRING_LENGTH_PATH];
   SDInterface sd_interface_;
