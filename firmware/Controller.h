@@ -26,12 +26,15 @@ public:
   ModularDevice::ModularServer& getModularServer();
 
   SDInterface& getSDInterface();
-  bool codecEnabled();
+  bool play(const char* path);
+  void stop();
   bool isPlaying();
-  const char* getLastAudioPathPlayed();
-  bool isAudioPath(const char* path);
-  bool playPath(const char* path);
   void setVolume(unsigned int percent);
+  const char* getLastAudioPathPlayed();
+  long getPosition();
+  long getLength();
+  bool codecEnabled();
+  bool isAudioPath(const char* path);
 private:
   ModularDevice::ModularServer modular_server_;
   SavedVariable saved_variables_[constants::SAVED_VARIABLE_COUNT_MAX];

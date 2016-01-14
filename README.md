@@ -33,10 +33,14 @@ License:
       "setSerialNumber",
       "getSDCardInfo",
       "getAudioPaths",
-      "playAudioPath",
+      "play",
+      "stop",
       "isPlaying",
+      "setVolume",
       "getLastAudioPathPlayed",
-      "setVolume"
+      "getPosition",
+      "getLength",
+      "getPercentComplete"
     ]
   }
 }
@@ -66,7 +70,9 @@ License:
       },
       {
         "name":"setSerialNumber",
-        "parameters":[],
+        "parameters":[
+          "serial_number"
+        ],
         "result_type":null
       },
       {
@@ -80,10 +86,15 @@ License:
         "result_type":"array"
       },
       {
-        "name":"playAudioPath",
+        "name":"play",
         "parameters":[
-          "path"
+          "audio_path"
         ],
+        "result_type":null
+      },
+      {
+        "name":"stop",
+        "parameters":[],
         "result_type":null
       },
       {
@@ -92,16 +103,31 @@ License:
         "result_type":"bool"
       },
       {
-        "name":"getLastAudioPathPlayed",
-        "parameters":[],
-        "result_type":"string"
-      },
-      {
         "name":"setVolume",
         "parameters":[
           "percent"
         ],
         "result_type":null
+      },
+      {
+        "name":"getLastAudioPathPlayed",
+        "parameters":[],
+        "result_type":"string"
+      },
+      {
+        "name":"getPosition",
+        "parameters":[],
+        "result_type":"long"
+      },
+      {
+        "name":"getLength",
+        "parameters":[],
+        "result_type":"long"
+      },
+      {
+        "name":"getPercentComplete",
+        "parameters":[],
+        "result_type":"long"
       }
     ],
     "parameters":[
@@ -112,7 +138,7 @@ License:
         "max":65535
       },
       {
-        "name":"path",
+        "name":"audio_path",
         "type":"string"
       },
       {

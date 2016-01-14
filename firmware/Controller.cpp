@@ -61,8 +61,8 @@ void Controller::setup()
   // Saved Variables
 
   // Parameters
-  ModularDevice::Parameter& path_parameter = modular_server_.createParameter(constants::path_parameter_name);
-  path_parameter.setTypeString();
+  ModularDevice::Parameter& audio_path_parameter = modular_server_.createParameter(constants::audio_path_parameter_name);
+  audio_path_parameter.setTypeString();
 
   ModularDevice::Parameter& percent_parameter = modular_server_.createParameter(constants::percent_parameter_name);
   percent_parameter.setRange(constants::percent_min,constants::percent_max);
@@ -76,21 +76,36 @@ void Controller::setup()
   get_audio_paths_method.attachCallback(callbacks::getAudioPathsCallback);
   get_audio_paths_method.setReturnTypeArray();
 
-  ModularDevice::Method& play_audio_path_method = modular_server_.createMethod(constants::play_audio_path_method_name);
-  play_audio_path_method.attachCallback(callbacks::playAudioPathCallback);
-  play_audio_path_method.addParameter(path_parameter);
+  ModularDevice::Method& play_method = modular_server_.createMethod(constants::play_method_name);
+  play_method.attachCallback(callbacks::playCallback);
+  play_method.addParameter(audio_path_parameter);
+
+  ModularDevice::Method& stop_method = modular_server_.createMethod(constants::stop_method_name);
+  stop_method.attachCallback(callbacks::stopCallback);
 
   ModularDevice::Method& is_playing_method = modular_server_.createMethod(constants::is_playing_method_name);
   is_playing_method.attachCallback(callbacks::isPlayingCallback);
   is_playing_method.setReturnTypeBool();
 
+  ModularDevice::Method& set_volume_method = modular_server_.createMethod(constants::set_volume_method_name);
+  set_volume_method.attachCallback(callbacks::setVolumeCallback);
+  set_volume_method.addParameter(percent_parameter);
+
   ModularDevice::Method& get_last_audio_path_played_method = modular_server_.createMethod(constants::get_last_audio_path_played_method_name);
   get_last_audio_path_played_method.attachCallback(callbacks::getLastAudioPathPlayedCallback);
   get_last_audio_path_played_method.setReturnTypeString();
 
-  ModularDevice::Method& set_volume_method = modular_server_.createMethod(constants::set_volume_method_name);
-  set_volume_method.attachCallback(callbacks::setVolumeCallback);
-  set_volume_method.addParameter(percent_parameter);
+  ModularDevice::Method& get_position_method = modular_server_.createMethod(constants::get_position_method_name);
+  get_position_method.attachCallback(callbacks::getPositionCallback);
+  get_position_method.setReturnTypeLong();
+
+  ModularDevice::Method& get_length_method = modular_server_.createMethod(constants::get_length_method_name);
+  get_length_method.attachCallback(callbacks::getLengthCallback);
+  get_length_method.setReturnTypeLong();
+
+  ModularDevice::Method& get_percent_complete_method = modular_server_.createMethod(constants::get_percent_complete_method_name);
+  get_percent_complete_method.attachCallback(callbacks::getPercentCompleteCallback);
+  get_percent_complete_method.setReturnTypeLong();
 
   // Setup Streams
   Serial.begin(constants::baudrate);
@@ -116,26 +131,7 @@ SDInterface& Controller::getSDInterface()
   return sd_interface_;
 }
 
-bool Controller::isAudioPath(const char *path)
-{
-  char path_upper[constants::STRING_LENGTH_PATH];
-  String(path).toUpperCase().toCharArray(path_upper,constants::STRING_LENGTH_PATH);
-
-  bool audio_path = false;
-  for (unsigned int i=0;i<constants::AUDIO_EXT_COUNT;++i)
-  {
-    const char *audio_ext = constants::audio_exts[i];
-    char *audio_ext_path = strstr(path_upper,audio_ext);
-    if (audio_ext_path != NULL)
-    {
-      audio_path = true;
-      break;
-    }
-  }
-  return audio_path;
-}
-
-bool Controller::playPath(const char *path)
+bool Controller::play(const char *path)
 {
   char path_upper[constants::STRING_LENGTH_PATH];
   String(path).toUpperCase().toCharArray(path_upper,constants::STRING_LENGTH_PATH);
@@ -157,6 +153,7 @@ bool Controller::playPath(const char *path)
     sd_path = path_upper;
   }
 
+  stop();
   bool playing = false;
 
   char *raw_ext = strstr(path_upper,constants::audio_ext_raw);
@@ -191,6 +188,90 @@ bool Controller::playPath(const char *path)
   return playing;
 }
 
+void Controller::stop()
+{
+  switch (file_type_playing_)
+  {
+    case constants::RAW_TYPE:
+      g_play_sd_raw.stop();
+      break;
+    case constants::WAV_TYPE:
+      g_play_sd_wav.stop();
+      break;
+  }
+  playing_ = false;
+}
+
+bool Controller::isPlaying()
+{
+  return playing_;
+}
+
+void Controller::setVolume(unsigned int percent)
+{
+  float volume = (float)percent/constants::percent_max;
+  g_sgtl5000.volume(volume);
+}
+
+const char* Controller::getLastAudioPathPlayed()
+{
+  return path_played_;
+}
+
+long Controller::getPosition()
+{
+  long position = 0;
+  switch (file_type_playing_)
+  {
+    case constants::RAW_TYPE:
+      position = g_play_sd_raw.positionMillis();
+      break;
+    case constants::WAV_TYPE:
+      position = g_play_sd_wav.positionMillis();
+      break;
+  }
+  return position;
+}
+
+long Controller::getLength()
+{
+  long length = 0;
+  switch (file_type_playing_)
+  {
+    case constants::RAW_TYPE:
+      length = g_play_sd_raw.lengthMillis();
+      break;
+    case constants::WAV_TYPE:
+      length = g_play_sd_wav.lengthMillis();
+      break;
+  }
+  return length;
+}
+
+bool Controller::codecEnabled()
+{
+  return codec_enabled_;
+}
+
+bool Controller::isAudioPath(const char *path)
+{
+  char path_upper[constants::STRING_LENGTH_PATH];
+  String(path).toUpperCase().toCharArray(path_upper,constants::STRING_LENGTH_PATH);
+
+  bool audio_path = false;
+  for (unsigned int i=0;i<constants::AUDIO_EXT_COUNT;++i)
+  {
+    const char *audio_ext = constants::audio_exts[i];
+    char *audio_ext_path = strstr(path_upper,audio_ext);
+    if (audio_ext_path != NULL)
+    {
+      audio_path = true;
+      break;
+    }
+  }
+  return audio_path;
+}
+
 void Controller::enableAudioCodec()
 {
   pinMode(SDA, INPUT);
@@ -205,21 +286,6 @@ void Controller::enableAudioCodec()
   }
 }
 
-bool Controller::codecEnabled()
-{
-  return codec_enabled_;
-}
-
-bool Controller::isPlaying()
-{
-  return playing_;
-}
-
-const char* Controller::getLastAudioPathPlayed()
-{
-  return path_played_;
-}
-
 void Controller::updatePlaying()
 {
   switch (file_type_playing_)
@@ -231,12 +297,6 @@ void Controller::updatePlaying()
       playing_ = g_play_sd_wav.isPlaying();
       break;
   }
-}
-
-void Controller::setVolume(unsigned int percent)
-{
-  float volume = (float)percent/constants::percent_max;
-  g_sgtl5000.volume(volume);
 }
 
 Controller controller;

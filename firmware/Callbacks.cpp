@@ -88,41 +88,41 @@ void getAudioPathsCallback()
   modular_server.endResponseArray();
 }
 
-void playAudioPathCallback()
+void playCallback()
 {
   if (!controller.codecEnabled())
   {
     modular_server.sendErrorResponse("No audio codec chip detected.");
   }
-  const char* path = modular_server.getParameterValue(constants::path_parameter_name);
-  if (!controller.isAudioPath(path))
+  const char* audio_path = modular_server.getParameterValue(constants::audio_path_parameter_name);
+  if (!controller.isAudioPath(audio_path))
   {
     char err_msg[constants::STRING_LENGTH_ERROR_MESSAGE];
     err_msg[0] = 0;
     strcat(err_msg,"Invalid audio path: ");
-    strcat(err_msg,path);
+    strcat(err_msg,audio_path);
     modular_server.sendErrorResponse(err_msg);
     return;
   }
-  bool playing = controller.playPath(path);
+  bool playing = controller.play(audio_path);
   if (!playing)
   {
     char err_msg[constants::STRING_LENGTH_ERROR_MESSAGE];
     err_msg[0] = 0;
     strcat(err_msg,"Unable to find audio path: ");
-    strcat(err_msg,path);
+    strcat(err_msg,audio_path);
     modular_server.sendErrorResponse(err_msg);
   }
+}
+
+void stopCallback()
+{
+  controller.stop();
 }
 
 void isPlayingCallback()
 {
   modular_server.writeResultToResponse(controller.isPlaying());
-}
-
-void getLastAudioPathPlayedCallback()
-{
-  modular_server.writeResultToResponse(controller.getLastAudioPathPlayed());
 }
 
 void setVolumeCallback()
@@ -133,6 +133,33 @@ void setVolumeCallback()
   }
   long percent = modular_server.getParameterValue(constants::percent_parameter_name);
   controller.setVolume(percent);
+}
+
+void getLastAudioPathPlayedCallback()
+{
+  modular_server.writeResultToResponse(controller.getLastAudioPathPlayed());
+}
+
+void getPositionCallback()
+{
+  modular_server.writeResultToResponse(controller.getPosition());
+}
+
+void getLengthCallback()
+{
+  modular_server.writeResultToResponse(controller.getLength());
+}
+
+void getPercentCompleteCallback()
+{
+  long position = controller.getPosition();
+  long length = controller.getLength();
+  long percent_complete = 100;
+  if (length > 0)
+  {
+    percent_complete = (100*position)/length;
+  }
+  modular_server.writeResultToResponse(percent_complete);
 }
 
 }
