@@ -93,6 +93,7 @@ void playCallback()
   if (!controller.codecEnabled())
   {
     modular_server.sendErrorResponse("No audio codec chip detected.");
+    return;
   }
   const char* audio_path = modular_server.getParameterValue(constants::audio_path_parameter_name);
   if (!controller.isAudioPath(audio_path))
