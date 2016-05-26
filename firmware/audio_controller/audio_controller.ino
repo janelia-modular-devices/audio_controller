@@ -1,4 +1,3 @@
-// audio_controller
 #include <Audio.h>
 #include <Wire.h>
 #include <SPI.h>
@@ -20,8 +19,6 @@
 #include "Callbacks.h"
 #include "Controller.h"
 
-
-// See README.md for more information
 
 void setup()
 {

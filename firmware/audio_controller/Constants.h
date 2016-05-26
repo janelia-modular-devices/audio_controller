@@ -12,7 +12,7 @@
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
-enum{SAVED_VARIABLE_COUNT_MAX=1};
+enum{FIELD_COUNT_MAX=1};
 enum{PARAMETER_COUNT_MAX=2};
 enum{METHOD_COUNT_MAX=10};
 
@@ -20,21 +20,21 @@ enum{AUDIO_EXT_COUNT=2};
 enum{STRING_LENGTH_PATH=255};
 enum{STRING_LENGTH_ERROR_MESSAGE=257};
 
-extern const int led_pin;
+extern const size_t led_pin;
 
-extern const unsigned int baudrate;
+extern const size_t baudrate;
 
-extern const unsigned int model_number;
+extern const size_t model_number;
 
 extern HardwareSerial serial2;
 
-extern const unsigned char firmware_major;
-extern const unsigned char firmware_minor;
-extern const unsigned char firmware_patch;
+extern const long firmware_major;
+extern const long firmware_minor;
+extern const long firmware_patch;
 
-extern const unsigned int sd_card_cs_pin;
-extern const unsigned int sd_card_mosi_pin;
-extern const unsigned int sd_card_sck_pin;
+extern const size_t sd_card_cs_pin;
+extern const size_t sd_card_mosi_pin;
+extern const size_t sd_card_sck_pin;
 
 extern const char* const audio_ext_raw;
 extern const char* const audio_ext_wav;
@@ -47,14 +47,18 @@ enum audio_file_t
 
 extern const char* const sd_prefix;
 
+extern ConstantString device_name;
+
+// Fields
+// Field values must be long, double, bool, long[], double[], bool[], char[]
+
+// Parameters
+extern ConstantString audio_path_parameter_name;
+extern ConstantString percent_parameter_name;
 extern const int percent_min;
 extern const int percent_max;
 
-extern ConstantString device_name;
-
-extern ConstantString audio_path_parameter_name;
-extern ConstantString percent_parameter_name;
-
+// Methods
 extern ConstantString get_sd_card_info_method_name;
 extern ConstantString get_audio_paths_method_name;
 extern ConstantString play_method_name;
@@ -65,5 +69,7 @@ extern ConstantString set_volume_method_name;
 extern ConstantString get_position_method_name;
 extern ConstantString get_length_method_name;
 extern ConstantString get_percent_complete_method_name;
+
+// Errors
 }
 #endif
