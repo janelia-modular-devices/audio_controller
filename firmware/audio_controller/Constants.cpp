@@ -39,6 +39,7 @@ CONSTANT_STRING(device_name,"audio_controller");
 
 // Parameters
 CONSTANT_STRING(audio_path_parameter_name,"audio_path");
+
 CONSTANT_STRING(percent_parameter_name,"percent");
 const int percent_min = 0;
 const int percent_max = 100;
@@ -54,6 +55,7 @@ CONSTANT_STRING(set_volume_method_name,"setVolume");
 CONSTANT_STRING(get_position_method_name,"getPosition");
 CONSTANT_STRING(get_length_method_name,"getLength");
 CONSTANT_STRING(get_percent_complete_method_name,"getPercentComplete");
+CONSTANT_STRING(play_tone_method_name,"playTone");
 
 // Errors
 }

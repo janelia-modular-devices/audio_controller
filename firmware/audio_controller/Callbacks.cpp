@@ -165,4 +165,9 @@ void getPercentCompleteCallback()
   modular_server.writeResultToResponse(percent_complete);
 }
 
+void playToneCallback()
+{
+  controller.playTone();
+}
+
 }

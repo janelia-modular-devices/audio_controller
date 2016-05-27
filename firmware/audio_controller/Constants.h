@@ -14,7 +14,7 @@ namespace constants
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{FIELD_COUNT_MAX=1};
 enum{PARAMETER_COUNT_MAX=2};
-enum{METHOD_COUNT_MAX=10};
+enum{METHOD_COUNT_MAX=11};
 
 enum{AUDIO_EXT_COUNT=2};
 enum{STRING_LENGTH_PATH=255};
@@ -39,10 +39,11 @@ extern const size_t sd_card_sck_pin;
 extern const char* const audio_ext_raw;
 extern const char* const audio_ext_wav;
 extern const char* const audio_exts[AUDIO_EXT_COUNT];
-enum audio_file_t
+enum audio_t
   {
     RAW_TYPE,
-    WAV_TYPE
+    WAV_TYPE,
+    TONE_TYPE,
   };
 
 extern const char* const sd_prefix;
@@ -54,6 +55,7 @@ extern ConstantString device_name;
 
 // Parameters
 extern ConstantString audio_path_parameter_name;
+
 extern ConstantString percent_parameter_name;
 extern const int percent_min;
 extern const int percent_max;
@@ -69,6 +71,7 @@ extern ConstantString set_volume_method_name;
 extern ConstantString get_position_method_name;
 extern ConstantString get_length_method_name;
 extern ConstantString get_percent_complete_method_name;
+extern ConstantString play_tone_method_name;
 
 // Errors
 }

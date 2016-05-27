@@ -35,6 +35,7 @@ public:
   long getLength();
   bool codecEnabled();
   bool isAudioPath(const char* path);
+  void playTone();
 private:
   ModularDevice::ModularServer modular_server_;
 
@@ -43,7 +44,7 @@ private:
   ModularDevice::Method methods_[constants::METHOD_COUNT_MAX];
 
   bool codec_enabled_;
-  constants::audio_file_t file_type_playing_;
+  constants::audio_t audio_type_playing_;
   bool playing_;
   char path_played_[constants::STRING_LENGTH_PATH];
   SDInterface sd_interface_;

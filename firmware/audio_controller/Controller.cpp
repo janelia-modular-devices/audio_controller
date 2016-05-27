@@ -7,21 +7,46 @@
 #include "Controller.h"
 
 
-AudioPlaySdRaw g_play_sd_raw;
-AudioPlaySdWav g_play_sd_wav;
-// Use one of these 3 output types: Digital I2S, Digital S/PDIF, or Analog DAC
-AudioOutputI2S g_audio_output;
-//AudioOutputSPDIF g_audio_output;
-//AudioOutputAnalog g_audio_output;
-AudioMixer4 mix0;
-AudioMixer4 mix1;
-AudioConnection g_patch_cord0(g_play_sd_raw, 0, mix0, 0);
-AudioConnection g_patch_cord1(g_play_sd_wav, 0, mix0, 1);
-AudioConnection g_patch_cord2(g_play_sd_raw, 1, mix1, 0);
-AudioConnection g_patch_cord3(g_play_sd_wav, 1, mix1, 1);
-AudioConnection g_patch_cord4(mix0, 0, g_audio_output, 0);
-AudioConnection g_patch_cord5(mix1, 0, g_audio_output, 1);
-AudioControlSGTL5000 g_sgtl5000;
+// AudioPlaySdRaw g_play_sd_raw;
+// AudioPlaySdWav g_play_sd_wav;
+// // Use one of these 3 output types: Digital I2S, Digital S/PDIF, or Analog DAC
+// AudioOutputI2S g_audio_output;
+// //AudioOutputSPDIF g_audio_output;
+// //AudioOutputAnalog g_audio_output;
+// AudioMixer4 mix0;
+// AudioMixer4 mix1;
+// AudioConnection g_patch_cord0(g_play_sd_raw, 0, mix0, 0);
+// AudioConnection g_patch_cord1(g_play_sd_wav, 0, mix0, 1);
+// AudioConnection g_patch_cord2(g_play_sd_raw, 1, mix1, 0);
+// AudioConnection g_patch_cord3(g_play_sd_wav, 1, mix1, 1);
+// AudioConnection g_patch_cord4(mix0, 0, g_audio_output, 0);
+// AudioConnection g_patch_cord5(mix1, 0, g_audio_output, 1);
+// AudioControlSGTL5000 g_sgtl5000;
+
+// GUItool: begin automatically generated code
+AudioSynthWaveformSine   g_sine;          //xy=295,345
+AudioPlaySdWav           g_play_sd_wav;     //xy=300,238
+AudioPlaySdRaw           g_play_sd_raw;     //xy=301,275
+AudioMixer4              g_mixer1;         //xy=506,325
+AudioMixer4              g_mixer2;         //xy=506,412
+AudioMixer4              g_mixer0;         //xy=509,247
+AudioOutputAnalog        g_dac;           //xy=698,412
+AudioOutputI2S           g_i2s;           //xy=707,281
+AudioConnection          patchCord1(g_sine, 0, g_mixer0, 2);
+AudioConnection          patchCord2(g_sine, 0, g_mixer1, 2);
+AudioConnection          patchCord3(g_sine, 0, g_mixer2, 3);
+AudioConnection          patchCord4(g_play_sd_wav, 0, g_mixer0, 0);
+AudioConnection          patchCord5(g_play_sd_wav, 0, g_mixer2, 0);
+AudioConnection          patchCord6(g_play_sd_wav, 1, g_mixer1, 0);
+AudioConnection          patchCord7(g_play_sd_wav, 1, g_mixer2, 1);
+AudioConnection          patchCord8(g_play_sd_raw, 0, g_mixer0, 1);
+AudioConnection          patchCord9(g_play_sd_raw, 0, g_mixer1, 1);
+AudioConnection          patchCord10(g_play_sd_raw, 0, g_mixer2, 2);
+AudioConnection          patchCord11(g_mixer1, 0, g_i2s, 1);
+AudioConnection          patchCord12(g_mixer2, g_dac);
+AudioConnection          patchCord13(g_mixer0, 0, g_i2s, 0);
+AudioControlSGTL5000     g_sgtl5000;     //xy=507,175
+// GUItool: end automatically generated code
 
 Controller::Controller()
 {
@@ -107,6 +132,9 @@ void Controller::setup()
   get_percent_complete_method.attachCallback(callbacks::getPercentCompleteCallback);
   get_percent_complete_method.setReturnTypeLong();
 
+  ModularDevice::Method& play_tone_method = modular_server_.createMethod(constants::play_tone_method_name);
+  play_tone_method.attachCallback(callbacks::playToneCallback);
+
   // Setup Streams
   Serial.begin(constants::baudrate);
   constants::serial2.begin(constants::baudrate);
@@ -159,7 +187,7 @@ bool Controller::play(const char *path)
   char *raw_ext = strstr(path_upper,constants::audio_ext_raw);
   if (raw_ext != NULL)
   {
-    file_type_playing_ = constants::RAW_TYPE;
+    audio_type_playing_ = constants::RAW_TYPE;
     if (sd_specified)
     {
       playing = g_play_sd_raw.play(sd_path);
@@ -171,7 +199,7 @@ bool Controller::play(const char *path)
     char *wav_ext = strstr(path_upper,constants::audio_ext_wav);
     if (wav_ext != NULL)
     {
-      file_type_playing_ = constants::WAV_TYPE;
+      audio_type_playing_ = constants::WAV_TYPE;
       if (sd_specified)
       {
         playing = g_play_sd_wav.play(sd_path);
@@ -190,7 +218,7 @@ bool Controller::play(const char *path)
 
 void Controller::stop()
 {
-  switch (file_type_playing_)
+  switch (audio_type_playing_)
   {
     case constants::RAW_TYPE:
       g_play_sd_raw.stop();
@@ -198,6 +226,8 @@ void Controller::stop()
     case constants::WAV_TYPE:
       g_play_sd_wav.stop();
       break;
+    case constants::TONE_TYPE:
+      g_sine.amplitude(0);
   }
   playing_ = false;
 }
@@ -221,7 +251,7 @@ const char* Controller::getLastAudioPathPlayed()
 long Controller::getPosition()
 {
   long position = 0;
-  switch (file_type_playing_)
+  switch (audio_type_playing_)
   {
     case constants::RAW_TYPE:
       position = g_play_sd_raw.positionMillis();
@@ -236,7 +266,7 @@ long Controller::getPosition()
 long Controller::getLength()
 {
   long length = 0;
-  switch (file_type_playing_)
+  switch (audio_type_playing_)
   {
     case constants::RAW_TYPE:
       length = g_play_sd_raw.lengthMillis();
@@ -272,6 +302,15 @@ bool Controller::isAudioPath(const char *path)
   return audio_path;
 }
 
+void Controller::playTone()
+{
+  stop();
+  audio_type_playing_ = constants::TONE_TYPE;
+  g_sine.amplitude(0);
+  g_sine.frequency(2000);
+  g_sine.amplitude(1);
+}
+
 void Controller::enableAudioCodec()
 {
   pinMode(SDA, INPUT);
@@ -288,7 +327,7 @@ void Controller::enableAudioCodec()
 
 void Controller::updatePlaying()
 {
-  switch (file_type_playing_)
+  switch (audio_type_playing_)
   {
     case constants::RAW_TYPE:
       playing_ = g_play_sd_raw.isPlaying();

@@ -37,5 +37,7 @@ void getLengthCallback();
 
 void getPercentCompleteCallback();
 
+void playToneCallback();
+
 }
 #endif
