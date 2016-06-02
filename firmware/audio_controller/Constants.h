@@ -52,6 +52,10 @@ extern ConstantString device_name;
 
 // Fields
 // Field values must be long, double, bool, long[], double[], bool[], char[]
+extern ConstantString volume_field_name;
+extern const double volume_min;
+extern const double volume_max;
+extern const double volume_default;
 
 // Parameters
 extern ConstantString audio_path_parameter_name;
@@ -63,15 +67,15 @@ extern const int percent_max;
 // Methods
 extern ConstantString get_sd_card_info_method_name;
 extern ConstantString get_audio_paths_method_name;
-extern ConstantString play_method_name;
-extern ConstantString is_playing_method_name;
+extern ConstantString play_path_method_name;
+extern ConstantString play_tone_method_name;
 extern ConstantString stop_method_name;
-extern ConstantString get_last_audio_path_played_method_name;
+extern ConstantString is_playing_method_name;
 extern ConstantString set_volume_method_name;
+extern ConstantString get_last_audio_path_played_method_name;
 extern ConstantString get_position_method_name;
 extern ConstantString get_length_method_name;
 extern ConstantString get_percent_complete_method_name;
-extern ConstantString play_tone_method_name;
 
 // Errors
 }

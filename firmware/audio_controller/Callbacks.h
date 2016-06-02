@@ -21,7 +21,9 @@ void getSDCardInfoCallback();
 
 void getAudioPathsCallback();
 
-void playCallback();
+void playPathCallback();
+
+void playToneCallback();
 
 void stopCallback();
 
@@ -36,8 +38,6 @@ void getPositionCallback();
 void getLengthCallback();
 
 void getPercentCompleteCallback();
-
-void playToneCallback();
 
 }
 #endif

@@ -36,6 +36,10 @@ const char* const sd_prefix = "/SD/";
 CONSTANT_STRING(device_name,"audio_controller");
 
 // Fields
+CONSTANT_STRING(volume_field_name,"volume");
+const double volume_min = 0.0;
+const double volume_max = 1.0;
+const double volume_default = 0.25;
 
 // Parameters
 CONSTANT_STRING(audio_path_parameter_name,"audio_path");
@@ -47,15 +51,15 @@ const int percent_max = 100;
 // Methods
 CONSTANT_STRING(get_sd_card_info_method_name,"getSDCardInfo");
 CONSTANT_STRING(get_audio_paths_method_name,"getAudioPaths");
-CONSTANT_STRING(play_method_name,"play");
+CONSTANT_STRING(play_path_method_name,"playPath");
+CONSTANT_STRING(play_tone_method_name,"playTone");
 CONSTANT_STRING(stop_method_name,"stop");
 CONSTANT_STRING(is_playing_method_name,"isPlaying");
-CONSTANT_STRING(get_last_audio_path_played_method_name,"getLastAudioPathPlayed");
 CONSTANT_STRING(set_volume_method_name,"setVolume");
+CONSTANT_STRING(get_last_audio_path_played_method_name,"getLastAudioPathPlayed");
 CONSTANT_STRING(get_position_method_name,"getPosition");
 CONSTANT_STRING(get_length_method_name,"getLength");
 CONSTANT_STRING(get_percent_complete_method_name,"getPercentComplete");
-CONSTANT_STRING(play_tone_method_name,"playTone");
 
 // Errors
 }

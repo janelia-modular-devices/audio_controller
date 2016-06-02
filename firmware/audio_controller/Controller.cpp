@@ -84,6 +84,8 @@ void Controller::setup()
   modular_server_.setMethodStorage(methods_);
 
   // Fields
+  ModularDevice::Field& volume_field = modular_server_.createField(constants::volume_field_name);
+  volume_field.setRange(constants::volume_min,constants::volume_max);
 
   // Parameters
   ModularDevice::Parameter& audio_path_parameter = modular_server_.createParameter(constants::audio_path_parameter_name);
@@ -101,9 +103,9 @@ void Controller::setup()
   get_audio_paths_method.attachCallback(callbacks::getAudioPathsCallback);
   get_audio_paths_method.setReturnTypeArray();
 
-  ModularDevice::Method& play_method = modular_server_.createMethod(constants::play_method_name);
-  play_method.attachCallback(callbacks::playCallback);
-  play_method.addParameter(audio_path_parameter);
+  ModularDevice::Method& play_path_method = modular_server_.createMethod(constants::play_path_method_name);
+  play_path_method.attachCallback(callbacks::playPathCallback);
+  play_path_method.addParameter(audio_path_parameter);
 
   ModularDevice::Method& stop_method = modular_server_.createMethod(constants::stop_method_name);
   stop_method.attachCallback(callbacks::stopCallback);
@@ -159,7 +161,7 @@ SDInterface& Controller::getSDInterface()
   return sd_interface_;
 }
 
-bool Controller::play(const char *path)
+bool Controller::playPath(const char *path)
 {
   char path_upper[constants::STRING_LENGTH_PATH];
   String(path).toUpperCase().toCharArray(path_upper,constants::STRING_LENGTH_PATH);
@@ -216,6 +218,16 @@ bool Controller::play(const char *path)
   return playing;
 }
 
+void Controller::playTone()
+{
+  stop();
+  audio_type_playing_ = constants::TONE_TYPE;
+  g_sine.amplitude(0);
+  g_sine.frequency(2000);
+  g_sine.amplitude(1);
+  playing_ = true;
+}
+
 void Controller::stop()
 {
   switch (audio_type_playing_)
@@ -235,12 +247,6 @@ void Controller::stop()
 bool Controller::isPlaying()
 {
   return playing_;
-}
-
-void Controller::setVolume(unsigned int percent)
-{
-  float volume = (float)percent/constants::percent_max;
-  g_sgtl5000.volume(volume);
 }
 
 const char* Controller::getLastAudioPathPlayed()
@@ -302,13 +308,11 @@ bool Controller::isAudioPath(const char *path)
   return audio_path;
 }
 
-void Controller::playTone()
+void Controller::updateVolume()
 {
-  stop();
-  audio_type_playing_ = constants::TONE_TYPE;
-  g_sine.amplitude(0);
-  g_sine.frequency(2000);
-  g_sine.amplitude(1);
+  double volume;
+  modular_server_.getFieldValue(constants::volume_field_name,volume);
+  g_sgtl5000.volume(volume);
 }
 
 void Controller::enableAudioCodec()

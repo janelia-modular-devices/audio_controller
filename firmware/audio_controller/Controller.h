@@ -26,7 +26,8 @@ public:
   ModularDevice::ModularServer& getModularServer();
 
   SDInterface& getSDInterface();
-  bool play(const char* path);
+  bool playPath(const char* path);
+  void playTone();
   void stop();
   bool isPlaying();
   void setVolume(unsigned int percent);
@@ -35,7 +36,6 @@ public:
   long getLength();
   bool codecEnabled();
   bool isAudioPath(const char* path);
-  void playTone();
 private:
   ModularDevice::ModularServer modular_server_;
 

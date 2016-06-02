@@ -90,7 +90,7 @@ void getAudioPathsCallback()
   modular_server.endResponseArray();
 }
 
-void playCallback()
+void playPathCallback()
 {
   if (!controller.codecEnabled())
   {
@@ -107,7 +107,7 @@ void playCallback()
     modular_server.sendErrorResponse(err_msg);
     return;
   }
-  bool playing = controller.play(audio_path);
+  bool playing = controller.playPath(audio_path);
   if (!playing)
   {
     char err_msg[constants::STRING_LENGTH_ERROR_MESSAGE];
@@ -116,6 +116,11 @@ void playCallback()
     strcat(err_msg,audio_path);
     modular_server.sendErrorResponse(err_msg);
   }
+}
+
+void playToneCallback()
+{
+  controller.playTone();
 }
 
 void stopCallback()
@@ -163,11 +168,6 @@ void getPercentCompleteCallback()
     percent_complete = (100*position)/length;
   }
   modular_server.writeResultToResponse(percent_complete);
-}
-
-void playToneCallback()
-{
-  controller.playTone();
 }
 
 }
