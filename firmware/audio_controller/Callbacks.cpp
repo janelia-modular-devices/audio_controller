@@ -133,16 +133,6 @@ void isPlayingCallback()
   modular_server.writeResultToResponse(controller.isPlaying());
 }
 
-void setVolumeCallback()
-{
-  if (!controller.codecEnabled())
-  {
-    modular_server.sendErrorResponse("No audio codec chip detected.");
-  }
-  long percent = modular_server.getParameterValue(constants::percent_parameter_name);
-  controller.setVolume(percent);
-}
-
 void getLastAudioPathPlayedCallback()
 {
   modular_server.writeResultToResponse(controller.getLastAudioPathPlayed());
@@ -168,6 +158,12 @@ void getPercentCompleteCallback()
     percent_complete = (100*position)/length;
   }
   modular_server.writeResultToResponse(percent_complete);
+}
+
+// Field Callbacks
+void setVolumeCallback()
+{
+  controller.updateVolume();
 }
 
 }

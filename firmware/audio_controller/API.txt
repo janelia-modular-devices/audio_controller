@@ -86,7 +86,7 @@
         "result_type":"array"
       },
       {
-        "name":"play",
+        "name":"playPath",
         "parameters":[
           "audio_path"
         ],
@@ -101,13 +101,6 @@
         "name":"isPlaying",
         "parameters":[],
         "result_type":"bool"
-      },
-      {
-        "name":"setVolume",
-        "parameters":[
-          "percent"
-        ],
-        "result_type":null
       },
       {
         "name":"getLastAudioPathPlayed",
@@ -128,6 +121,11 @@
         "name":"getPercentComplete",
         "parameters":[],
         "result_type":"long"
+      },
+      {
+        "name":"playTone",
+        "parameters":[],
+        "result_type":null
       }
     ],
     "parameters":[
@@ -162,6 +160,14 @@
         "max":65535,
         "value":0,
         "default_value":0
+      },
+      {
+        "name":"volume",
+        "type":"double",
+        "min":0.000000,
+        "max":1.000000,
+        "value":0.250000,
+        "default_value":0.250000
       }
     ]
   }

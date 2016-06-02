@@ -7,22 +7,6 @@
 #include "Controller.h"
 
 
-// AudioPlaySdRaw g_play_sd_raw;
-// AudioPlaySdWav g_play_sd_wav;
-// // Use one of these 3 output types: Digital I2S, Digital S/PDIF, or Analog DAC
-// AudioOutputI2S g_audio_output;
-// //AudioOutputSPDIF g_audio_output;
-// //AudioOutputAnalog g_audio_output;
-// AudioMixer4 mix0;
-// AudioMixer4 mix1;
-// AudioConnection g_patch_cord0(g_play_sd_raw, 0, mix0, 0);
-// AudioConnection g_patch_cord1(g_play_sd_wav, 0, mix0, 1);
-// AudioConnection g_patch_cord2(g_play_sd_raw, 1, mix1, 0);
-// AudioConnection g_patch_cord3(g_play_sd_wav, 1, mix1, 1);
-// AudioConnection g_patch_cord4(mix0, 0, g_audio_output, 0);
-// AudioConnection g_patch_cord5(mix1, 0, g_audio_output, 1);
-// AudioControlSGTL5000 g_sgtl5000;
-
 // GUItool: begin automatically generated code
 AudioSynthWaveformSine   g_sine;          //xy=295,345
 AudioPlaySdWav           g_play_sd_wav;     //xy=300,238
@@ -84,8 +68,9 @@ void Controller::setup()
   modular_server_.setMethodStorage(methods_);
 
   // Fields
-  ModularDevice::Field& volume_field = modular_server_.createField(constants::volume_field_name);
+  ModularDevice::Field& volume_field = modular_server_.createField(constants::volume_field_name,constants::volume_default);
   volume_field.setRange(constants::volume_min,constants::volume_max);
+  volume_field.attachSetValueCallback(callbacks::setVolumeCallback);
 
   // Parameters
   ModularDevice::Parameter& audio_path_parameter = modular_server_.createParameter(constants::audio_path_parameter_name);
@@ -113,10 +98,6 @@ void Controller::setup()
   ModularDevice::Method& is_playing_method = modular_server_.createMethod(constants::is_playing_method_name);
   is_playing_method.attachCallback(callbacks::isPlayingCallback);
   is_playing_method.setReturnTypeBool();
-
-  ModularDevice::Method& set_volume_method = modular_server_.createMethod(constants::set_volume_method_name);
-  set_volume_method.attachCallback(callbacks::setVolumeCallback);
-  set_volume_method.addParameter(percent_parameter);
 
   ModularDevice::Method& get_last_audio_path_played_method = modular_server_.createMethod(constants::get_last_audio_path_played_method_name);
   get_last_audio_path_played_method.attachCallback(callbacks::getLastAudioPathPlayedCallback);
@@ -310,9 +291,12 @@ bool Controller::isAudioPath(const char *path)
 
 void Controller::updateVolume()
 {
-  double volume;
-  modular_server_.getFieldValue(constants::volume_field_name,volume);
-  g_sgtl5000.volume(volume);
+  if (controller.codecEnabled())
+  {
+    double volume;
+    modular_server_.getFieldValue(constants::volume_field_name,volume);
+    g_sgtl5000.volume(volume);
+  }
 }
 
 void Controller::enableAudioCodec()
@@ -323,9 +307,9 @@ void Controller::enableAudioCodec()
   {
     // This may wait forever if the SDA & SCL pins lack
     // pullup resistors so check first
-    g_sgtl5000.enable();
-    g_sgtl5000.volume(0.5);
     codec_enabled_ = true;
+    g_sgtl5000.enable();
+    updateVolume();
   }
 }
 

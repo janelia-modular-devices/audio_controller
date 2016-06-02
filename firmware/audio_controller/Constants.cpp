@@ -55,7 +55,6 @@ CONSTANT_STRING(play_path_method_name,"playPath");
 CONSTANT_STRING(play_tone_method_name,"playTone");
 CONSTANT_STRING(stop_method_name,"stop");
 CONSTANT_STRING(is_playing_method_name,"isPlaying");
-CONSTANT_STRING(set_volume_method_name,"setVolume");
 CONSTANT_STRING(get_last_audio_path_played_method_name,"getLastAudioPathPlayed");
 CONSTANT_STRING(get_position_method_name,"getPosition");
 CONSTANT_STRING(get_length_method_name,"getLength");

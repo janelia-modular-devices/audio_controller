@@ -14,7 +14,7 @@ namespace constants
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{FIELD_COUNT_MAX=1};
 enum{PARAMETER_COUNT_MAX=2};
-enum{METHOD_COUNT_MAX=11};
+enum{METHOD_COUNT_MAX=10};
 
 enum{AUDIO_EXT_COUNT=2};
 enum{STRING_LENGTH_PATH=255};
@@ -71,7 +71,6 @@ extern ConstantString play_path_method_name;
 extern ConstantString play_tone_method_name;
 extern ConstantString stop_method_name;
 extern ConstantString is_playing_method_name;
-extern ConstantString set_volume_method_name;
 extern ConstantString get_last_audio_path_played_method_name;
 extern ConstantString get_position_method_name;
 extern ConstantString get_length_method_name;

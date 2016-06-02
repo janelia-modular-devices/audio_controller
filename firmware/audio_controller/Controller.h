@@ -30,12 +30,12 @@ public:
   void playTone();
   void stop();
   bool isPlaying();
-  void setVolume(unsigned int percent);
   const char* getLastAudioPathPlayed();
   long getPosition();
   long getLength();
   bool codecEnabled();
   bool isAudioPath(const char* path);
+  void updateVolume();
 private:
   ModularDevice::ModularServer modular_server_;
 

@@ -29,8 +29,6 @@ void stopCallback();
 
 void isPlayingCallback();
 
-void setVolumeCallback();
-
 void getLastAudioPathPlayedCallback();
 
 void getPositionCallback();
@@ -38,6 +36,9 @@ void getPositionCallback();
 void getLengthCallback();
 
 void getPercentCompleteCallback();
+
+// Field Callbacks
+void setVolumeCallback();
 
 }
 #endif
