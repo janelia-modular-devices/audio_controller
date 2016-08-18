@@ -54,8 +54,13 @@ void Controller::setup()
   sd_interface_.setup();
 
   // Pin Setup
+  pinMode(13,OUTPUT);
+  digitalWrite(13,LOW);
+
+  pinMode(constants::bnc_a_pin,INPUT_PULLUP);
+
   pinMode(constants::bnc_b_pin,INPUT_PULLUP);
-  attachInterrupt(constants::bnc_b_pin,callbacks::bncBInterruptCallback,FALLING);
+  attachInterrupt(digitalPinToInterrupt(constants::bnc_b_pin),callbacks::bncBInterruptCallback,FALLING);
 
   // Device Info
   modular_server_.setName(constants::device_name);
@@ -76,8 +81,14 @@ void Controller::setup()
   volume_field.setRange(constants::volume_min,constants::volume_max);
   volume_field.attachSetValueCallback(callbacks::setVolumeCallback);
 
-  ModularDevice::Field& trigger_frequency_field = modular_server_.createField(constants::trigger_frequency_field_name,constants::trigger_frequency_default);
-  trigger_frequency_field.setRange(constants::trigger_frequency_min,constants::trigger_frequency_max);
+  ModularDevice::Field& trigger_frequency_high_field = modular_server_.createField(constants::trigger_frequency_high_field_name,constants::trigger_frequency_high_default);
+  trigger_frequency_high_field.setRange(constants::trigger_frequency_high_min,constants::trigger_frequency_high_max);
+
+  ModularDevice::Field& trigger_frequency_low_field = modular_server_.createField(constants::trigger_frequency_low_field_name,constants::trigger_frequency_low_default);
+  trigger_frequency_low_field.setRange(constants::trigger_frequency_low_min,constants::trigger_frequency_low_max);
+
+  ModularDevice::Field& trigger_duration_field = modular_server_.createField(constants::trigger_duration_field_name,constants::trigger_duration_default);
+  trigger_duration_field.setRange(constants::trigger_duration_min,constants::trigger_duration_max);
 
   // Parameters
   ModularDevice::Parameter& audio_path_parameter = modular_server_.createParameter(constants::audio_path_parameter_name);
@@ -213,6 +224,7 @@ bool Controller::playPath(const char *path)
 void Controller::playTone(size_t frequency)
 {
   stop();
+  digitalWrite(13,HIGH);
   audio_type_playing_ = constants::TONE_TYPE;
   g_sine.amplitude(0);
   g_sine.frequency(frequency);
@@ -223,6 +235,7 @@ void Controller::playTone(size_t frequency)
 
 void Controller::stop()
 {
+  digitalWrite(13,LOW);
   switch (audio_type_playing_)
   {
     case constants::RAW_TYPE:

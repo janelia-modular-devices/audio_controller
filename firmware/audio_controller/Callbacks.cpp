@@ -167,12 +167,45 @@ void setVolumeCallback()
   controller.updateVolume();
 }
 
+// EventController Callbacks
+void stopEventCallback(int index)
+{
+  controller.stop();
+}
+
+void playToneEventCallback(int index)
+{
+  long frequency;
+  bool bnc_a = digitalRead(constants::bnc_a_pin);
+  if (bnc_a)
+  {
+    modular_server.getFieldValue(constants::trigger_frequency_high_field_name,frequency);
+    controller.playTone(frequency);
+  }
+  else
+  {
+    modular_server.getFieldValue(constants::trigger_frequency_low_field_name,frequency);
+    controller.playTone(frequency);
+  }
+  digitalWrite(13,HIGH);
+}
+
 // Interrupt Callbacks
 void bncBInterruptCallback()
 {
-  long frequency;
-  modular_server.getFieldValue(constants::frequency_parameter_name,frequency);
-  controller.playTone(frequency);
+  int delay = 0;
+  int period = 1000;
+  int count = 1;
+  int index = 0;
+  long on_duration;
+  modular_server.getFieldValue(constants::trigger_duration_field_name,on_duration);
+  EventController::event_controller.addPwmUsingDelayPeriodOnDuration(playToneEventCallback,
+                                                                     stopEventCallback,
+                                                                     delay,
+                                                                     period,
+                                                                     on_duration,
+                                                                     count,
+                                                                     index);
 }
 
 }

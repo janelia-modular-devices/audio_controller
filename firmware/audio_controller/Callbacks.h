@@ -40,6 +40,11 @@ void getPercentCompleteCallback();
 // Field Callbacks
 void setVolumeCallback();
 
+// EventController Callbacks
+void stopEventCallback(int index);
+
+void playToneEventCallback(int index);
+
 // Interrupt Callbacks
 void bncBInterruptCallback();
 
