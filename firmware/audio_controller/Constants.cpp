@@ -16,12 +16,15 @@ const size_t baudrate = 9600;
 
 const size_t model_number = 1150;
 
+HardwareSerial serial2(Serial2);
+
 // Use semantic versioning http://semver.org/
 const long firmware_major = 0;
 const long firmware_minor = 1;
 const long firmware_patch = 0;
 
-HardwareSerial serial2(Serial2);
+const size_t bnc_a_pin = 33;
+const size_t bnc_b_pin = 32;
 
 const size_t sd_card_cs_pin = 10;
 const size_t sd_card_mosi_pin = 7;
@@ -41,12 +44,21 @@ const double volume_min = 0.0;
 const double volume_max = 1.0;
 const double volume_default = 0.25;
 
+CONSTANT_STRING(trigger_frequency_field_name,"trigger_frequency");
+const long trigger_frequency_min = 0;
+const long trigger_frequency_max = 22000;
+const long trigger_frequency_default = 2000;
+
 // Parameters
 CONSTANT_STRING(audio_path_parameter_name,"audio_path");
 
 CONSTANT_STRING(percent_parameter_name,"percent");
 const int percent_min = 0;
 const int percent_max = 100;
+
+CONSTANT_STRING(frequency_parameter_name,"frequency");
+const int frequency_min = 0;
+const int frequency_max = 22000;
 
 // Methods
 CONSTANT_STRING(get_sd_card_info_method_name,"getSDCardInfo");

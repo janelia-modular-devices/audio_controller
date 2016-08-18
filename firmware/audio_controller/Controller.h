@@ -14,6 +14,7 @@
 #include "Constants.h"
 #include "Callbacks.h"
 
+#include "EventController.h"
 #include "Streaming.h"
 
 
@@ -27,7 +28,7 @@ public:
 
   SDInterface& getSDInterface();
   bool playPath(const char* path);
-  void playTone();
+  void playTone(size_t frequency);
   void stop();
   bool isPlaying();
   const char* getLastAudioPathPlayed();

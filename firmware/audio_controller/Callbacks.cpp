@@ -120,7 +120,8 @@ void playPathCallback()
 
 void playToneCallback()
 {
-  controller.playTone();
+  long frequency = modular_server.getParameterValue(constants::frequency_parameter_name);
+  controller.playTone(frequency);
 }
 
 void stopCallback()
@@ -164,6 +165,14 @@ void getPercentCompleteCallback()
 void setVolumeCallback()
 {
   controller.updateVolume();
+}
+
+// Interrupt Callbacks
+void bncBInterruptCallback()
+{
+  long frequency;
+  modular_server.getFieldValue(constants::frequency_parameter_name,frequency);
+  controller.playTone(frequency);
 }
 
 }

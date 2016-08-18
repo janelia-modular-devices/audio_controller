@@ -41,6 +41,8 @@ Controller::Controller()
 
 void Controller::setup()
 {
+  EventController::event_controller.setup();
+
   // Audio Setup
   // Audio connections require memory to work.  For more
   // detailed information, see the MemoryAndCpuUsage example
@@ -52,6 +54,8 @@ void Controller::setup()
   sd_interface_.setup();
 
   // Pin Setup
+  pinMode(constants::bnc_b_pin,INPUT_PULLUP);
+  attachInterrupt(constants::bnc_b_pin,callbacks::bncBInterruptCallback,FALLING);
 
   // Device Info
   modular_server_.setName(constants::device_name);
@@ -72,12 +76,18 @@ void Controller::setup()
   volume_field.setRange(constants::volume_min,constants::volume_max);
   volume_field.attachSetValueCallback(callbacks::setVolumeCallback);
 
+  ModularDevice::Field& trigger_frequency_field = modular_server_.createField(constants::trigger_frequency_field_name,constants::trigger_frequency_default);
+  trigger_frequency_field.setRange(constants::trigger_frequency_min,constants::trigger_frequency_max);
+
   // Parameters
   ModularDevice::Parameter& audio_path_parameter = modular_server_.createParameter(constants::audio_path_parameter_name);
   audio_path_parameter.setTypeString();
 
   ModularDevice::Parameter& percent_parameter = modular_server_.createParameter(constants::percent_parameter_name);
   percent_parameter.setRange(constants::percent_min,constants::percent_max);
+
+  ModularDevice::Parameter& frequency_parameter = modular_server_.createParameter(constants::frequency_parameter_name);
+  frequency_parameter.setRange(constants::frequency_min,constants::frequency_max);
 
   // Methods
   ModularDevice::Method& get_sd_card_info_method = modular_server_.createMethod(constants::get_sd_card_info_method_name);
@@ -117,6 +127,7 @@ void Controller::setup()
 
   ModularDevice::Method& play_tone_method = modular_server_.createMethod(constants::play_tone_method_name);
   play_tone_method.attachCallback(callbacks::playToneCallback);
+  play_tone_method.addParameter(frequency_parameter);
 
   // Setup Streams
   Serial.begin(constants::baudrate);
@@ -199,13 +210,14 @@ bool Controller::playPath(const char *path)
   return playing;
 }
 
-void Controller::playTone()
+void Controller::playTone(size_t frequency)
 {
   stop();
   audio_type_playing_ = constants::TONE_TYPE;
   g_sine.amplitude(0);
-  g_sine.frequency(2000);
+  g_sine.frequency(frequency);
   g_sine.amplitude(1);
+  updateVolume();
   playing_ = true;
 }
 

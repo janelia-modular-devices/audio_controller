@@ -40,5 +40,8 @@ void getPercentCompleteCallback();
 // Field Callbacks
 void setVolumeCallback();
 
+// Interrupt Callbacks
+void bncBInterruptCallback();
+
 }
 #endif

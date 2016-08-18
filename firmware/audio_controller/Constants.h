@@ -12,8 +12,8 @@
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
-enum{FIELD_COUNT_MAX=1};
-enum{PARAMETER_COUNT_MAX=2};
+enum{FIELD_COUNT_MAX=2};
+enum{PARAMETER_COUNT_MAX=4};
 enum{METHOD_COUNT_MAX=10};
 
 enum{AUDIO_EXT_COUNT=2};
@@ -31,6 +31,9 @@ extern HardwareSerial serial2;
 extern const long firmware_major;
 extern const long firmware_minor;
 extern const long firmware_patch;
+
+extern const size_t bnc_a_pin;
+extern const size_t bnc_b_pin;
 
 extern const size_t sd_card_cs_pin;
 extern const size_t sd_card_mosi_pin;
@@ -57,12 +60,21 @@ extern const double volume_min;
 extern const double volume_max;
 extern const double volume_default;
 
+extern ConstantString trigger_frequency_field_name;
+extern const long trigger_frequency_min;
+extern const long trigger_frequency_max;
+extern const long trigger_frequency_default;
+
 // Parameters
 extern ConstantString audio_path_parameter_name;
 
 extern ConstantString percent_parameter_name;
 extern const int percent_min;
 extern const int percent_max;
+
+extern ConstantString frequency_parameter_name;
+extern const int frequency_min;
+extern const int frequency_max;
 
 // Methods
 extern ConstantString get_sd_card_info_method_name;
