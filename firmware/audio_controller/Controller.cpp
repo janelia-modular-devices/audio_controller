@@ -60,7 +60,7 @@ void Controller::setup()
   pinMode(constants::bnc_a_pin,INPUT_PULLUP);
 
   pinMode(constants::bnc_b_pin,INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(constants::bnc_b_pin),callbacks::bncBInterruptCallback,FALLING);
+  attachInterrupt(digitalPinToInterrupt(constants::bnc_b_pin),callbacks::bncBInterruptCallback,RISING);
 
   // Device Info
   modular_server_.setName(constants::device_name);
