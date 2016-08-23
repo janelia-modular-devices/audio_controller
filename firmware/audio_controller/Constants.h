@@ -14,7 +14,7 @@ namespace constants
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{FIELD_COUNT_MAX=4};
 enum{PARAMETER_COUNT_MAX=4};
-enum{METHOD_COUNT_MAX=12};
+enum{METHOD_COUNT_MAX=15};
 
 enum{AUDIO_EXT_COUNT=2};
 enum{STRING_LENGTH_PATH=255};
@@ -47,6 +47,7 @@ enum audio_t
     RAW_TYPE,
     WAV_TYPE,
     TONE_TYPE,
+    NOISE_TYPE,
   };
 
 extern const char* const sd_prefix;
@@ -93,6 +94,9 @@ extern ConstantString play_path_method_name;
 extern ConstantString play_tone_method_name;
 extern ConstantString play_tone_left_method_name;
 extern ConstantString play_tone_right_method_name;
+extern ConstantString play_noise_method_name;
+extern ConstantString play_noise_left_method_name;
+extern ConstantString play_noise_right_method_name;
 extern ConstantString stop_method_name;
 extern ConstantString is_playing_method_name;
 extern ConstantString get_last_audio_path_played_method_name;

@@ -136,6 +136,21 @@ void playToneRightCallback()
   controller.playToneRight(frequency);
 }
 
+void playNoiseCallback()
+{
+  controller.playNoise();
+}
+
+void playNoiseLeftCallback()
+{
+  controller.playNoiseLeft();
+}
+
+void playNoiseRightCallback()
+{
+  controller.playNoiseRight();
+}
+
 void stopCallback()
 {
   controller.stop();

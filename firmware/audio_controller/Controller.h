@@ -31,6 +31,9 @@ public:
   void playTone(size_t frequency);
   void playToneLeft(size_t frequency);
   void playToneRight(size_t frequency);
+  void playNoise();
+  void playNoiseLeft();
+  void playNoiseRight();
   void stop();
   bool isPlaying();
   const char* getLastAudioPathPlayed();

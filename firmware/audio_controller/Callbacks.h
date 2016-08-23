@@ -29,6 +29,12 @@ void playToneLeftCallback();
 
 void playToneRightCallback();
 
+void playNoiseCallback();
+
+void playNoiseLeftCallback();
+
+void playNoiseRightCallback();
+
 void stopCallback();
 
 void isPlayingCallback();

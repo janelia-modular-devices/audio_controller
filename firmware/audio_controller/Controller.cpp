@@ -8,8 +8,8 @@
 
 
 // GUItool: begin automatically generated code
-AudioSynthWaveformSine   g_sine_left;          //xy=287,312
-AudioSynthWaveformSine   g_sine_right;          //xy=293,351
+AudioSynthWaveformSine   g_tone_left;          //xy=287,312
+AudioSynthWaveformSine   g_tone_right;          //xy=293,351
 AudioSynthNoiseWhite     g_noise_left;         //xy=293,389
 AudioSynthNoiseWhite     g_noise_right;         //xy=297,428
 AudioPlaySdWav           g_play_sd_wav;     //xy=300,238
@@ -17,8 +17,8 @@ AudioPlaySdRaw           g_play_sd_raw;     //xy=301,275
 AudioMixer4              g_mixer_left;         //xy=537,247
 AudioMixer4              g_mixer_right;         //xy=543,323
 AudioOutputI2S           g_i2s;           //xy=707,281
-AudioConnection          patchCord1(g_sine_left, 0, g_mixer_left, 2);
-AudioConnection          patchCord2(g_sine_right, 0, g_mixer_right, 2);
+AudioConnection          patchCord1(g_tone_left, 0, g_mixer_left, 2);
+AudioConnection          patchCord2(g_tone_right, 0, g_mixer_right, 2);
 AudioConnection          patchCord3(g_noise_left, 0, g_mixer_left, 3);
 AudioConnection          patchCord4(g_noise_right, 0, g_mixer_right, 3);
 AudioConnection          patchCord5(g_play_sd_wav, 0, g_mixer_left, 0);
@@ -122,6 +122,15 @@ void Controller::setup()
   ModularDevice::Method& play_tone_right_method = modular_server_.createMethod(constants::play_tone_right_method_name);
   play_tone_right_method.attachCallback(callbacks::playToneRightCallback);
   play_tone_right_method.addParameter(frequency_parameter);
+
+  ModularDevice::Method& play_noise_method = modular_server_.createMethod(constants::play_noise_method_name);
+  play_noise_method.attachCallback(callbacks::playNoiseCallback);
+
+  ModularDevice::Method& play_noise_left_method = modular_server_.createMethod(constants::play_noise_left_method_name);
+  play_noise_left_method.attachCallback(callbacks::playNoiseLeftCallback);
+
+  ModularDevice::Method& play_noise_right_method = modular_server_.createMethod(constants::play_noise_right_method_name);
+  play_noise_right_method.attachCallback(callbacks::playNoiseRightCallback);
 
   ModularDevice::Method& stop_method = modular_server_.createMethod(constants::stop_method_name);
   stop_method.attachCallback(callbacks::stopCallback);
@@ -232,12 +241,12 @@ void Controller::playTone(size_t frequency)
   stop();
   digitalWrite(13,HIGH);
   audio_type_playing_ = constants::TONE_TYPE;
-  g_sine_left.amplitude(0);
-  g_sine_right.amplitude(0);
-  g_sine_left.frequency(frequency);
-  g_sine_right.frequency(frequency);
-  g_sine_left.amplitude(1);
-  g_sine_right.amplitude(1);
+  g_tone_left.amplitude(0);
+  g_tone_right.amplitude(0);
+  g_tone_left.frequency(frequency);
+  g_tone_right.frequency(frequency);
+  g_tone_left.amplitude(1);
+  g_tone_right.amplitude(1);
   updateVolume();
   playing_ = true;
 }
@@ -247,9 +256,9 @@ void Controller::playToneLeft(size_t frequency)
   stop();
   digitalWrite(13,HIGH);
   audio_type_playing_ = constants::TONE_TYPE;
-  g_sine_left.amplitude(0);
-  g_sine_left.frequency(frequency);
-  g_sine_left.amplitude(1);
+  g_tone_left.amplitude(0);
+  g_tone_left.frequency(frequency);
+  g_tone_left.amplitude(1);
   updateVolume();
   playing_ = true;
 }
@@ -259,9 +268,40 @@ void Controller::playToneRight(size_t frequency)
   stop();
   digitalWrite(13,HIGH);
   audio_type_playing_ = constants::TONE_TYPE;
-  g_sine_right.amplitude(0);
-  g_sine_right.frequency(frequency);
-  g_sine_right.amplitude(1);
+  g_tone_right.amplitude(0);
+  g_tone_right.frequency(frequency);
+  g_tone_right.amplitude(1);
+  updateVolume();
+  playing_ = true;
+}
+
+void Controller::playNoise()
+{
+  stop();
+  digitalWrite(13,HIGH);
+  audio_type_playing_ = constants::NOISE_TYPE;
+  g_noise_left.amplitude(1);
+  g_noise_right.amplitude(1);
+  updateVolume();
+  playing_ = true;
+}
+
+void Controller::playNoiseLeft()
+{
+  stop();
+  digitalWrite(13,HIGH);
+  audio_type_playing_ = constants::NOISE_TYPE;
+  g_noise_left.amplitude(1);
+  updateVolume();
+  playing_ = true;
+}
+
+void Controller::playNoiseRight()
+{
+  stop();
+  digitalWrite(13,HIGH);
+  audio_type_playing_ = constants::NOISE_TYPE;
+  g_noise_right.amplitude(1);
   updateVolume();
   playing_ = true;
 }
@@ -278,8 +318,11 @@ void Controller::stop()
       g_play_sd_wav.stop();
       break;
     case constants::TONE_TYPE:
-      g_sine_left.amplitude(0);
-      g_sine_right.amplitude(0);
+      g_tone_left.amplitude(0);
+      g_tone_right.amplitude(0);
+    case constants::NOISE_TYPE:
+      g_noise_left.amplitude(0);
+      g_noise_right.amplitude(0);
   }
   playing_ = false;
 }
