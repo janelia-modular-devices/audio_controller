@@ -29,6 +29,8 @@ public:
   SDInterface& getSDInterface();
   bool playPath(const char* path);
   void playTone(size_t frequency);
+  void playToneLeft(size_t frequency);
+  void playToneRight(size_t frequency);
   void stop();
   bool isPlaying();
   const char* getLastAudioPathPlayed();

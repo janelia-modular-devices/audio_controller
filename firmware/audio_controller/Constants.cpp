@@ -44,15 +44,15 @@ const double volume_min = 0.0;
 const double volume_max = 1.0;
 const double volume_default = 0.25;
 
-CONSTANT_STRING(trigger_frequency_high_field_name,"trigger_frequency_high");
-const long trigger_frequency_high_min = 0;
-const long trigger_frequency_high_max = 22000;
-const long trigger_frequency_high_default = 6000;
+CONSTANT_STRING(trigger_frequency_left_field_name,"trigger_frequency_left");
+const long trigger_frequency_left_min = 0;
+const long trigger_frequency_left_max = 22000;
+const long trigger_frequency_left_default = 6000;
 
-CONSTANT_STRING(trigger_frequency_low_field_name,"trigger_frequency_low");
-const long trigger_frequency_low_min = 0;
-const long trigger_frequency_low_max = 22000;
-const long trigger_frequency_low_default = 1000;
+CONSTANT_STRING(trigger_frequency_right_field_name,"trigger_frequency_right");
+const long trigger_frequency_right_min = 0;
+const long trigger_frequency_right_max = 22000;
+const long trigger_frequency_right_default = 2000;
 
 CONSTANT_STRING(trigger_duration_field_name,"trigger_duration");
 const long trigger_duration_min = 0;
@@ -75,6 +75,8 @@ CONSTANT_STRING(get_sd_card_info_method_name,"getSDCardInfo");
 CONSTANT_STRING(get_audio_paths_method_name,"getAudioPaths");
 CONSTANT_STRING(play_path_method_name,"playPath");
 CONSTANT_STRING(play_tone_method_name,"playTone");
+CONSTANT_STRING(play_tone_left_method_name,"playToneLeft");
+CONSTANT_STRING(play_tone_right_method_name,"playToneRight");
 CONSTANT_STRING(stop_method_name,"stop");
 CONSTANT_STRING(is_playing_method_name,"isPlaying");
 CONSTANT_STRING(get_last_audio_path_played_method_name,"getLastAudioPathPlayed");

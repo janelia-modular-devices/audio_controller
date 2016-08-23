@@ -14,7 +14,7 @@ namespace constants
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{FIELD_COUNT_MAX=4};
 enum{PARAMETER_COUNT_MAX=4};
-enum{METHOD_COUNT_MAX=10};
+enum{METHOD_COUNT_MAX=12};
 
 enum{AUDIO_EXT_COUNT=2};
 enum{STRING_LENGTH_PATH=255};
@@ -60,15 +60,15 @@ extern const double volume_min;
 extern const double volume_max;
 extern const double volume_default;
 
-extern ConstantString trigger_frequency_high_field_name;
-extern const long trigger_frequency_high_min;
-extern const long trigger_frequency_high_max;
-extern const long trigger_frequency_high_default;
+extern ConstantString trigger_frequency_left_field_name;
+extern const long trigger_frequency_left_min;
+extern const long trigger_frequency_left_max;
+extern const long trigger_frequency_left_default;
 
-extern ConstantString trigger_frequency_low_field_name;
-extern const long trigger_frequency_low_min;
-extern const long trigger_frequency_low_max;
-extern const long trigger_frequency_low_default;
+extern ConstantString trigger_frequency_right_field_name;
+extern const long trigger_frequency_right_min;
+extern const long trigger_frequency_right_max;
+extern const long trigger_frequency_right_default;
 
 extern ConstantString trigger_duration_field_name;
 extern const long trigger_duration_min;
@@ -91,6 +91,8 @@ extern ConstantString get_sd_card_info_method_name;
 extern ConstantString get_audio_paths_method_name;
 extern ConstantString play_path_method_name;
 extern ConstantString play_tone_method_name;
+extern ConstantString play_tone_left_method_name;
+extern ConstantString play_tone_right_method_name;
 extern ConstantString stop_method_name;
 extern ConstantString is_playing_method_name;
 extern ConstantString get_last_audio_path_played_method_name;

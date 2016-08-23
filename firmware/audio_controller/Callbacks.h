@@ -25,6 +25,10 @@ void playPathCallback();
 
 void playToneCallback();
 
+void playToneLeftCallback();
+
+void playToneRightCallback();
+
 void stopCallback();
 
 void isPlayingCallback();

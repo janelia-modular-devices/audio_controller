@@ -124,6 +124,18 @@ void playToneCallback()
   controller.playTone(frequency);
 }
 
+void playToneLeftCallback()
+{
+  long frequency = modular_server.getParameterValue(constants::frequency_parameter_name);
+  controller.playToneLeft(frequency);
+}
+
+void playToneRightCallback()
+{
+  long frequency = modular_server.getParameterValue(constants::frequency_parameter_name);
+  controller.playToneRight(frequency);
+}
+
 void stopCallback()
 {
   controller.stop();
@@ -179,13 +191,13 @@ void playToneEventCallback(int index)
   bool bnc_a = digitalRead(constants::bnc_a_pin);
   if (bnc_a)
   {
-    modular_server.getFieldValue(constants::trigger_frequency_high_field_name,frequency);
-    controller.playTone(frequency);
+    modular_server.getFieldValue(constants::trigger_frequency_left_field_name,frequency);
+    controller.playToneLeft(frequency);
   }
   else
   {
-    modular_server.getFieldValue(constants::trigger_frequency_low_field_name,frequency);
-    controller.playTone(frequency);
+    modular_server.getFieldValue(constants::trigger_frequency_right_field_name,frequency);
+    controller.playToneRight(frequency);
   }
   digitalWrite(13,HIGH);
 }

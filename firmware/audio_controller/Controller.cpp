@@ -8,28 +8,26 @@
 
 
 // GUItool: begin automatically generated code
-AudioSynthWaveformSine   g_sine;          //xy=295,345
+AudioSynthWaveformSine   g_sine_left;          //xy=287,312
+AudioSynthWaveformSine   g_sine_right;          //xy=293,351
+AudioSynthNoiseWhite     g_noise_left;         //xy=293,389
+AudioSynthNoiseWhite     g_noise_right;         //xy=297,428
 AudioPlaySdWav           g_play_sd_wav;     //xy=300,238
 AudioPlaySdRaw           g_play_sd_raw;     //xy=301,275
-AudioMixer4              g_mixer1;         //xy=506,325
-AudioMixer4              g_mixer2;         //xy=506,412
-AudioMixer4              g_mixer0;         //xy=509,247
-AudioOutputAnalog        g_dac;           //xy=698,412
+AudioMixer4              g_mixer_left;         //xy=537,247
+AudioMixer4              g_mixer_right;         //xy=543,323
 AudioOutputI2S           g_i2s;           //xy=707,281
-AudioConnection          patchCord1(g_sine, 0, g_mixer0, 2);
-AudioConnection          patchCord2(g_sine, 0, g_mixer1, 2);
-AudioConnection          patchCord3(g_sine, 0, g_mixer2, 3);
-AudioConnection          patchCord4(g_play_sd_wav, 0, g_mixer0, 0);
-AudioConnection          patchCord5(g_play_sd_wav, 0, g_mixer2, 0);
-AudioConnection          patchCord6(g_play_sd_wav, 1, g_mixer1, 0);
-AudioConnection          patchCord7(g_play_sd_wav, 1, g_mixer2, 1);
-AudioConnection          patchCord8(g_play_sd_raw, 0, g_mixer0, 1);
-AudioConnection          patchCord9(g_play_sd_raw, 0, g_mixer1, 1);
-AudioConnection          patchCord10(g_play_sd_raw, 0, g_mixer2, 2);
-AudioConnection          patchCord11(g_mixer1, 0, g_i2s, 1);
-AudioConnection          patchCord12(g_mixer2, g_dac);
-AudioConnection          patchCord13(g_mixer0, 0, g_i2s, 0);
-AudioControlSGTL5000     g_sgtl5000;     //xy=507,175
+AudioConnection          patchCord1(g_sine_left, 0, g_mixer_left, 2);
+AudioConnection          patchCord2(g_sine_right, 0, g_mixer_right, 2);
+AudioConnection          patchCord3(g_noise_left, 0, g_mixer_left, 3);
+AudioConnection          patchCord4(g_noise_right, 0, g_mixer_right, 3);
+AudioConnection          patchCord5(g_play_sd_wav, 0, g_mixer_left, 0);
+AudioConnection          patchCord6(g_play_sd_wav, 1, g_mixer_right, 0);
+AudioConnection          patchCord7(g_play_sd_raw, 0, g_mixer_left, 1);
+AudioConnection          patchCord8(g_play_sd_raw, 0, g_mixer_right, 1);
+AudioConnection          patchCord9(g_mixer_left, 0, g_i2s, 0);
+AudioConnection          patchCord10(g_mixer_right, 0, g_i2s, 1);
+AudioControlSGTL5000     g_sgtl5000;     //xy=535,172
 // GUItool: end automatically generated code
 
 Controller::Controller()
@@ -81,11 +79,11 @@ void Controller::setup()
   volume_field.setRange(constants::volume_min,constants::volume_max);
   volume_field.attachSetValueCallback(callbacks::setVolumeCallback);
 
-  ModularDevice::Field& trigger_frequency_high_field = modular_server_.createField(constants::trigger_frequency_high_field_name,constants::trigger_frequency_high_default);
-  trigger_frequency_high_field.setRange(constants::trigger_frequency_high_min,constants::trigger_frequency_high_max);
+  ModularDevice::Field& trigger_frequency_left_field = modular_server_.createField(constants::trigger_frequency_left_field_name,constants::trigger_frequency_left_default);
+  trigger_frequency_left_field.setRange(constants::trigger_frequency_left_min,constants::trigger_frequency_left_max);
 
-  ModularDevice::Field& trigger_frequency_low_field = modular_server_.createField(constants::trigger_frequency_low_field_name,constants::trigger_frequency_low_default);
-  trigger_frequency_low_field.setRange(constants::trigger_frequency_low_min,constants::trigger_frequency_low_max);
+  ModularDevice::Field& trigger_frequency_right_field = modular_server_.createField(constants::trigger_frequency_right_field_name,constants::trigger_frequency_right_default);
+  trigger_frequency_right_field.setRange(constants::trigger_frequency_right_min,constants::trigger_frequency_right_max);
 
   ModularDevice::Field& trigger_duration_field = modular_server_.createField(constants::trigger_duration_field_name,constants::trigger_duration_default);
   trigger_duration_field.setRange(constants::trigger_duration_min,constants::trigger_duration_max);
@@ -113,6 +111,18 @@ void Controller::setup()
   play_path_method.attachCallback(callbacks::playPathCallback);
   play_path_method.addParameter(audio_path_parameter);
 
+  ModularDevice::Method& play_tone_method = modular_server_.createMethod(constants::play_tone_method_name);
+  play_tone_method.attachCallback(callbacks::playToneCallback);
+  play_tone_method.addParameter(frequency_parameter);
+
+  ModularDevice::Method& play_tone_left_method = modular_server_.createMethod(constants::play_tone_left_method_name);
+  play_tone_left_method.attachCallback(callbacks::playToneLeftCallback);
+  play_tone_left_method.addParameter(frequency_parameter);
+
+  ModularDevice::Method& play_tone_right_method = modular_server_.createMethod(constants::play_tone_right_method_name);
+  play_tone_right_method.attachCallback(callbacks::playToneRightCallback);
+  play_tone_right_method.addParameter(frequency_parameter);
+
   ModularDevice::Method& stop_method = modular_server_.createMethod(constants::stop_method_name);
   stop_method.attachCallback(callbacks::stopCallback);
 
@@ -135,10 +145,6 @@ void Controller::setup()
   ModularDevice::Method& get_percent_complete_method = modular_server_.createMethod(constants::get_percent_complete_method_name);
   get_percent_complete_method.attachCallback(callbacks::getPercentCompleteCallback);
   get_percent_complete_method.setReturnTypeLong();
-
-  ModularDevice::Method& play_tone_method = modular_server_.createMethod(constants::play_tone_method_name);
-  play_tone_method.attachCallback(callbacks::playToneCallback);
-  play_tone_method.addParameter(frequency_parameter);
 
   // Setup Streams
   Serial.begin(constants::baudrate);
@@ -226,9 +232,36 @@ void Controller::playTone(size_t frequency)
   stop();
   digitalWrite(13,HIGH);
   audio_type_playing_ = constants::TONE_TYPE;
-  g_sine.amplitude(0);
-  g_sine.frequency(frequency);
-  g_sine.amplitude(1);
+  g_sine_left.amplitude(0);
+  g_sine_right.amplitude(0);
+  g_sine_left.frequency(frequency);
+  g_sine_right.frequency(frequency);
+  g_sine_left.amplitude(1);
+  g_sine_right.amplitude(1);
+  updateVolume();
+  playing_ = true;
+}
+
+void Controller::playToneLeft(size_t frequency)
+{
+  stop();
+  digitalWrite(13,HIGH);
+  audio_type_playing_ = constants::TONE_TYPE;
+  g_sine_left.amplitude(0);
+  g_sine_left.frequency(frequency);
+  g_sine_left.amplitude(1);
+  updateVolume();
+  playing_ = true;
+}
+
+void Controller::playToneRight(size_t frequency)
+{
+  stop();
+  digitalWrite(13,HIGH);
+  audio_type_playing_ = constants::TONE_TYPE;
+  g_sine_right.amplitude(0);
+  g_sine_right.frequency(frequency);
+  g_sine_right.amplitude(1);
   updateVolume();
   playing_ = true;
 }
@@ -245,7 +278,8 @@ void Controller::stop()
       g_play_sd_wav.stop();
       break;
     case constants::TONE_TYPE:
-      g_sine.amplitude(0);
+      g_sine_left.amplitude(0);
+      g_sine_right.amplitude(0);
   }
   playing_ = false;
 }
