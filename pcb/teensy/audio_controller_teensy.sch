@@ -71,7 +71,6 @@ NoConn ~ 3850 1550
 NoConn ~ 3850 1850
 NoConn ~ 3850 1950
 NoConn ~ 3850 2050
-NoConn ~ 3850 2350
 NoConn ~ 1350 1150
 $Comp
 L PWR_FLAG #FLG012
@@ -183,4 +182,22 @@ Wire Wire Line
 Wire Wire Line
 	4000 1050 4000 1150
 Connection ~ 4000 1150
+Wire Wire Line
+	3850 2350 3950 2350
+Text Label 3950 2350 0    60   ~ 0
+DAC
+$Comp
+L SGTL5000 U?
+U 1 1 57C89602
+P 7350 2300
+F 0 "U?" H 7800 3000 60  0000 C CNN
+F 1 "SGTL5000" H 6950 3000 60  0000 C CNN
+F 2 "footprints:QFN-5x5-32" H 7650 2900 60  0001 C CNN
+F 3 "" H 7350 2300 60  0001 C CNN
+F 4 "digikey" H 7850 3100 60  0001 C CNN "Vendor"
+F 5 "SGTL5000XNAA3R2CT-ND" H 7950 3200 60  0001 C CNN "PartNumber"
+F 6 "Stereo Audio Interface 32-QFN" H 8050 3300 60  0001 C CNN "Description"
+	1    7350 2300
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
