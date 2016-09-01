@@ -200,4 +200,74 @@ F 6 "Stereo Audio Interface 32-QFN" H 8050 3300 60  0001 C CNN "Description"
 	1    7350 2300
 	1    0    0    -1  
 $EndComp
+$Comp
+L AP7313_1.5V U?
+U 1 1 57C8ABBD
+P 2400 3600
+F 0 "U?" H 2400 3847 60  0000 C CNN
+F 1 "AP7313_1.5V" H 2400 3741 60  0000 C CNN
+F 2 "footprints:SOT-23-3" H 2450 3300 60  0001 C CNN
+F 3 "" H 2400 3600 60  0001 C CNN
+F 4 "digikey" H 2650 3500 60  0001 C CNN "Vendor"
+F 5 "AP7313-15SAG-7DICT-ND" H 2750 3600 60  0001 C CNN "PartNumber"
+F 6 "Linear Voltage Regulator IC Positive Fixed 1 Output 1.5V 150mA SOT-23-3" H 2850 3700 60  0001 C CNN "Description"
+	1    2400 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L 2.2uF C?
+U 1 1 57C8D133
+P 1600 3850
+F 0 "C?" H 1650 3950 40  0000 L CNN
+F 1 "2.2uF" H 1600 3850 30  0000 C CNN
+F 2 "footprints:SM1210" H 1638 3700 30  0001 C CNN
+F 3 "" H 1600 3850 60  0000 C CNN
+F 4 "digikey" H 1700 4050 60  0001 C CNN "Vendor"
+F 5 "478-3591-1-ND" H 1800 4150 60  0001 C CNN "PartNumber"
+F 6 "2.2uF 50V Ceramic Capacitor X7R 1210" H 1900 4250 60  0001 C CNN "Description"
+	1    1600 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L 0.1uF C?
+U 1 1 57C8D1F2
+P 1800 3850
+F 0 "C?" H 1850 3950 40  0000 L CNN
+F 1 "0.1uF" H 1800 3850 30  0000 C CNN
+F 2 "footprints:SM1210" H 1838 3700 30  0001 C CNN
+F 3 "" H 1800 3850 60  0000 C CNN
+F 4 "digikey" H 1900 4050 60  0001 C CNN "Vendor"
+F 5 "478-3586-1-ND" H 2000 4150 60  0001 C CNN "PartNumber"
+F 6 "CAP CER 0.1UF 50V 10% X7R 1210" H 2100 4250 60  0001 C CNN "Description"
+	1    1800 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L 0.1uF C?
+U 1 1 57C8D519
+P 2000 3850
+F 0 "C?" H 2050 3950 40  0000 L CNN
+F 1 "0.1uF" H 2000 3850 30  0000 C CNN
+F 2 "footprints:SM1210" H 2038 3700 30  0001 C CNN
+F 3 "" H 2000 3850 60  0000 C CNN
+F 4 "digikey" H 2100 4050 60  0001 C CNN "Vendor"
+F 5 "478-3586-1-ND" H 2200 4150 60  0001 C CNN "PartNumber"
+F 6 "CAP CER 0.1UF 50V 10% X7R 1210" H 2300 4250 60  0001 C CNN "Description"
+	1    2000 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L 2.2uF C?
+U 1 1 57C8D5F7
+P 2900 3850
+F 0 "C?" H 2950 3950 40  0000 L CNN
+F 1 "2.2uF" H 2900 3850 30  0000 C CNN
+F 2 "footprints:SM1210" H 2938 3700 30  0001 C CNN
+F 3 "" H 2900 3850 60  0000 C CNN
+F 4 "digikey" H 3000 4050 60  0001 C CNN "Vendor"
+F 5 "478-3591-1-ND" H 3100 4150 60  0001 C CNN "PartNumber"
+F 6 "2.2uF 50V Ceramic Capacitor X7R 1210" H 3200 4250 60  0001 C CNN "Description"
+	1    2900 3850
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

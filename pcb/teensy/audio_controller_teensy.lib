@@ -47,6 +47,29 @@ X ~ 2 0 -200 170 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
+# 2.2uF
+#
+DEF 2.2uF C 0 10 N Y 1 F N
+F0 "C" 0 100 40 H V L CNN
+F1 "2.2uF" 0 0 30 H V C CNN
+F2 "audio_controller_teensy:SM1210" 38 -150 30 H I C CNN
+F3 "" 0 0 60 H V C CNN
+F4 "digikey" 100 200 60 H I C CNN "Vendor"
+F5 "478-3591-1-ND" 200 300 60 H I C CNN "PartNumber"
+F6 "2.2uF 50V Ceramic Capacitor X7R 1210" 300 400 60 H I C CNN "Description"
+$FPLIST
+ SM*
+ C?
+ C1-1
+$ENDFPLIST
+DRAW
+P 2 0 1 20 -80 -30 80 -30 N
+P 2 0 1 20 -80 30 80 30 N
+X ~ 1 0 200 170 D 40 40 1 1 P
+X ~ 2 0 -200 170 U 40 40 1 1 P
+ENDDRAW
+ENDDEF
+#
 # AP7313_1.5V
 #
 DEF AP7313_1.5V U 0 40 Y Y 1 F N
