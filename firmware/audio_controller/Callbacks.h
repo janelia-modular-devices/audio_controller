@@ -55,7 +55,11 @@ void stopEventCallback(int index);
 
 void playToneEventCallback(int index);
 
+void playNoiseEventCallback(int index);
+
 // Interrupt Callbacks
+void bncAInterruptCallback();
+
 void bncBInterruptCallback();
 
 }

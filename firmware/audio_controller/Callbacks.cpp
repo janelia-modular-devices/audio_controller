@@ -203,30 +203,52 @@ void stopEventCallback(int index)
 void playToneEventCallback(int index)
 {
   long frequency;
-  bool bnc_a = digitalRead(constants::bnc_a_pin);
-  if (bnc_a)
-  {
-    modular_server.getFieldValue(constants::trigger_frequency_left_field_name,frequency);
-    controller.playToneLeft(frequency);
-  }
-  else
+  bool trigger_a_right;
+  modular_server.getFieldValue(constants::trigger_a_right_field_name,trigger_a_right);
+  if (trigger_a_right)
   {
     modular_server.getFieldValue(constants::trigger_frequency_right_field_name,frequency);
     controller.playToneRight(frequency);
   }
-  digitalWrite(13,HIGH);
+  else
+  {
+    modular_server.getFieldValue(constants::trigger_frequency_left_field_name,frequency);
+    controller.playToneLeft(frequency);
+  }
+}
+
+void playNoiseEventCallback(int index)
+{
+  controller.playNoise();
 }
 
 // Interrupt Callbacks
-void bncBInterruptCallback()
+void bncAInterruptCallback()
 {
   int delay = 0;
-  int period = 1000;
   int count = 1;
   int index = 0;
   long on_duration;
-  modular_server.getFieldValue(constants::trigger_duration_field_name,on_duration);
+  modular_server.getFieldValue(constants::trigger_a_duration_field_name,on_duration);
+  int period = on_duration + 10;
   EventController::event_controller.addPwmUsingDelayPeriodOnDuration(playToneEventCallback,
+                                                                     stopEventCallback,
+                                                                     delay,
+                                                                     period,
+                                                                     on_duration,
+                                                                     count,
+                                                                     index);
+}
+
+void bncBInterruptCallback()
+{
+  int delay = 0;
+  int count = 1;
+  int index = 0;
+  long on_duration;
+  modular_server.getFieldValue(constants::trigger_b_duration_field_name,on_duration);
+  int period = on_duration + 10;
+  EventController::event_controller.addPwmUsingDelayPeriodOnDuration(playNoiseEventCallback,
                                                                      stopEventCallback,
                                                                      delay,
                                                                      period,

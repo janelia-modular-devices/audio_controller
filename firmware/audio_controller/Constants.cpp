@@ -47,17 +47,25 @@ const double volume_default = 0.25;
 CONSTANT_STRING(trigger_frequency_left_field_name,"trigger_frequency_left");
 const long trigger_frequency_left_min = 0;
 const long trigger_frequency_left_max = 22000;
-const long trigger_frequency_left_default = 6000;
+const long trigger_frequency_left_default = 15500;
 
 CONSTANT_STRING(trigger_frequency_right_field_name,"trigger_frequency_right");
 const long trigger_frequency_right_min = 0;
 const long trigger_frequency_right_max = 22000;
-const long trigger_frequency_right_default = 2000;
+const long trigger_frequency_right_default = 5750;
 
-CONSTANT_STRING(trigger_duration_field_name,"trigger_duration");
-const long trigger_duration_min = 0;
-const long trigger_duration_max = 10000;
-const long trigger_duration_default = 400;
+CONSTANT_STRING(trigger_a_duration_field_name,"trigger_a_duration");
+const long trigger_a_duration_min = 0;
+const long trigger_a_duration_max = 10000;
+const long trigger_a_duration_default = 400;
+
+CONSTANT_STRING(trigger_b_duration_field_name,"trigger_b_duration");
+const long trigger_b_duration_min = 0;
+const long trigger_b_duration_max = 10000;
+const long trigger_b_duration_default = 5000;
+
+CONSTANT_STRING(trigger_a_right_field_name,"trigger_a_right");
+const bool trigger_a_right_default = true;
 
 // Parameters
 CONSTANT_STRING(audio_path_parameter_name,"audio_path");

@@ -12,7 +12,7 @@
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
-enum{FIELD_COUNT_MAX=4};
+enum{FIELD_COUNT_MAX=6};
 enum{PARAMETER_COUNT_MAX=4};
 enum{METHOD_COUNT_MAX=15};
 
@@ -71,10 +71,18 @@ extern const long trigger_frequency_right_min;
 extern const long trigger_frequency_right_max;
 extern const long trigger_frequency_right_default;
 
-extern ConstantString trigger_duration_field_name;
-extern const long trigger_duration_min;
-extern const long trigger_duration_max;
-extern const long trigger_duration_default;
+extern ConstantString trigger_a_duration_field_name;
+extern const long trigger_a_duration_min;
+extern const long trigger_a_duration_max;
+extern const long trigger_a_duration_default;
+
+extern ConstantString trigger_b_duration_field_name;
+extern const long trigger_b_duration_min;
+extern const long trigger_b_duration_max;
+extern const long trigger_b_duration_default;
+
+extern ConstantString trigger_a_right_field_name;
+extern const bool trigger_a_right_default;
 
 // Parameters
 extern ConstantString audio_path_parameter_name;

@@ -56,6 +56,7 @@ void Controller::setup()
   digitalWrite(13,LOW);
 
   pinMode(constants::bnc_a_pin,INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(constants::bnc_a_pin),callbacks::bncAInterruptCallback,RISING);
 
   pinMode(constants::bnc_b_pin,INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(constants::bnc_b_pin),callbacks::bncBInterruptCallback,RISING);
@@ -85,8 +86,13 @@ void Controller::setup()
   ModularDevice::Field& trigger_frequency_right_field = modular_server_.createField(constants::trigger_frequency_right_field_name,constants::trigger_frequency_right_default);
   trigger_frequency_right_field.setRange(constants::trigger_frequency_right_min,constants::trigger_frequency_right_max);
 
-  ModularDevice::Field& trigger_duration_field = modular_server_.createField(constants::trigger_duration_field_name,constants::trigger_duration_default);
-  trigger_duration_field.setRange(constants::trigger_duration_min,constants::trigger_duration_max);
+  ModularDevice::Field& trigger_a_duration_field = modular_server_.createField(constants::trigger_a_duration_field_name,constants::trigger_a_duration_default);
+  trigger_a_duration_field.setRange(constants::trigger_a_duration_min,constants::trigger_a_duration_max);
+
+  ModularDevice::Field& trigger_b_duration_field = modular_server_.createField(constants::trigger_b_duration_field_name,constants::trigger_b_duration_default);
+  trigger_b_duration_field.setRange(constants::trigger_b_duration_min,constants::trigger_b_duration_max);
+
+  ModularDevice::Field& trigger_a_right_field = modular_server_.createField(constants::trigger_a_right_field_name,constants::trigger_a_right_default);
 
   // Parameters
   ModularDevice::Parameter& audio_path_parameter = modular_server_.createParameter(constants::audio_path_parameter_name);
