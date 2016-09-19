@@ -24,10 +24,10 @@ public:
   Controller();
   void setup();
   void update();
-  ModularDevice::ModularServer& getModularServer();
+  ModularDevice::ModularServer & getModularServer();
 
-  SDInterface& getSDInterface();
-  bool playPath(const char* path);
+  SDInterface & getSDInterface();
+  bool playPath(const char * path);
   void playTone(size_t frequency);
   void playToneLeft(size_t frequency);
   void playToneRight(size_t frequency);
@@ -36,11 +36,11 @@ public:
   void playNoiseRight();
   void stop();
   bool isPlaying();
-  const char* getLastAudioPathPlayed();
+  const char * getLastAudioPathPlayed();
   long getPosition();
   long getLength();
   bool codecEnabled();
-  bool isAudioPath(const char* path);
+  bool isAudioPath(const char * path);
   void updateVolume();
 private:
   ModularDevice::ModularServer modular_server_;

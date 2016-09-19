@@ -76,88 +76,88 @@ void Controller::setup()
   modular_server_.setMethodStorage(methods_);
 
   // Fields
-  ModularDevice::Field& volume_field = modular_server_.createField(constants::volume_field_name,constants::volume_default);
+  ModularDevice::Field & volume_field = modular_server_.createField(constants::volume_field_name,constants::volume_default);
   volume_field.setRange(constants::volume_min,constants::volume_max);
   volume_field.attachSetValueCallback(callbacks::setVolumeCallback);
 
-  ModularDevice::Field& trigger_frequency_left_field = modular_server_.createField(constants::trigger_frequency_left_field_name,constants::trigger_frequency_left_default);
+  ModularDevice::Field & trigger_frequency_left_field = modular_server_.createField(constants::trigger_frequency_left_field_name,constants::trigger_frequency_left_default);
   trigger_frequency_left_field.setRange(constants::trigger_frequency_left_min,constants::trigger_frequency_left_max);
 
-  ModularDevice::Field& trigger_frequency_right_field = modular_server_.createField(constants::trigger_frequency_right_field_name,constants::trigger_frequency_right_default);
+  ModularDevice::Field & trigger_frequency_right_field = modular_server_.createField(constants::trigger_frequency_right_field_name,constants::trigger_frequency_right_default);
   trigger_frequency_right_field.setRange(constants::trigger_frequency_right_min,constants::trigger_frequency_right_max);
 
-  ModularDevice::Field& trigger_a_duration_field = modular_server_.createField(constants::trigger_a_duration_field_name,constants::trigger_a_duration_default);
+  ModularDevice::Field & trigger_a_duration_field = modular_server_.createField(constants::trigger_a_duration_field_name,constants::trigger_a_duration_default);
   trigger_a_duration_field.setRange(constants::trigger_a_duration_min,constants::trigger_a_duration_max);
 
-  ModularDevice::Field& trigger_b_duration_field = modular_server_.createField(constants::trigger_b_duration_field_name,constants::trigger_b_duration_default);
+  ModularDevice::Field & trigger_b_duration_field = modular_server_.createField(constants::trigger_b_duration_field_name,constants::trigger_b_duration_default);
   trigger_b_duration_field.setRange(constants::trigger_b_duration_min,constants::trigger_b_duration_max);
 
-  ModularDevice::Field& trigger_a_right_field = modular_server_.createField(constants::trigger_a_right_field_name,constants::trigger_a_right_default);
+  ModularDevice::Field & trigger_a_right_field = modular_server_.createField(constants::trigger_a_right_field_name,constants::trigger_a_right_default);
 
   // Parameters
-  ModularDevice::Parameter& audio_path_parameter = modular_server_.createParameter(constants::audio_path_parameter_name);
+  ModularDevice::Parameter & audio_path_parameter = modular_server_.createParameter(constants::audio_path_parameter_name);
   audio_path_parameter.setTypeString();
 
-  ModularDevice::Parameter& percent_parameter = modular_server_.createParameter(constants::percent_parameter_name);
+  ModularDevice::Parameter & percent_parameter = modular_server_.createParameter(constants::percent_parameter_name);
   percent_parameter.setRange(constants::percent_min,constants::percent_max);
 
-  ModularDevice::Parameter& frequency_parameter = modular_server_.createParameter(constants::frequency_parameter_name);
+  ModularDevice::Parameter & frequency_parameter = modular_server_.createParameter(constants::frequency_parameter_name);
   frequency_parameter.setRange(constants::frequency_min,constants::frequency_max);
 
   // Methods
-  ModularDevice::Method& get_sd_card_info_method = modular_server_.createMethod(constants::get_sd_card_info_method_name);
+  ModularDevice::Method & get_sd_card_info_method = modular_server_.createMethod(constants::get_sd_card_info_method_name);
   get_sd_card_info_method.attachCallback(callbacks::getSDCardInfoCallback);
   get_sd_card_info_method.setReturnTypeObject();
 
-  ModularDevice::Method& get_audio_paths_method = modular_server_.createMethod(constants::get_audio_paths_method_name);
+  ModularDevice::Method & get_audio_paths_method = modular_server_.createMethod(constants::get_audio_paths_method_name);
   get_audio_paths_method.attachCallback(callbacks::getAudioPathsCallback);
   get_audio_paths_method.setReturnTypeArray();
 
-  ModularDevice::Method& play_path_method = modular_server_.createMethod(constants::play_path_method_name);
+  ModularDevice::Method & play_path_method = modular_server_.createMethod(constants::play_path_method_name);
   play_path_method.attachCallback(callbacks::playPathCallback);
   play_path_method.addParameter(audio_path_parameter);
 
-  ModularDevice::Method& play_tone_method = modular_server_.createMethod(constants::play_tone_method_name);
+  ModularDevice::Method & play_tone_method = modular_server_.createMethod(constants::play_tone_method_name);
   play_tone_method.attachCallback(callbacks::playToneCallback);
   play_tone_method.addParameter(frequency_parameter);
 
-  ModularDevice::Method& play_tone_left_method = modular_server_.createMethod(constants::play_tone_left_method_name);
+  ModularDevice::Method & play_tone_left_method = modular_server_.createMethod(constants::play_tone_left_method_name);
   play_tone_left_method.attachCallback(callbacks::playToneLeftCallback);
   play_tone_left_method.addParameter(frequency_parameter);
 
-  ModularDevice::Method& play_tone_right_method = modular_server_.createMethod(constants::play_tone_right_method_name);
+  ModularDevice::Method & play_tone_right_method = modular_server_.createMethod(constants::play_tone_right_method_name);
   play_tone_right_method.attachCallback(callbacks::playToneRightCallback);
   play_tone_right_method.addParameter(frequency_parameter);
 
-  ModularDevice::Method& play_noise_method = modular_server_.createMethod(constants::play_noise_method_name);
+  ModularDevice::Method & play_noise_method = modular_server_.createMethod(constants::play_noise_method_name);
   play_noise_method.attachCallback(callbacks::playNoiseCallback);
 
-  ModularDevice::Method& play_noise_left_method = modular_server_.createMethod(constants::play_noise_left_method_name);
+  ModularDevice::Method & play_noise_left_method = modular_server_.createMethod(constants::play_noise_left_method_name);
   play_noise_left_method.attachCallback(callbacks::playNoiseLeftCallback);
 
-  ModularDevice::Method& play_noise_right_method = modular_server_.createMethod(constants::play_noise_right_method_name);
+  ModularDevice::Method & play_noise_right_method = modular_server_.createMethod(constants::play_noise_right_method_name);
   play_noise_right_method.attachCallback(callbacks::playNoiseRightCallback);
 
-  ModularDevice::Method& stop_method = modular_server_.createMethod(constants::stop_method_name);
+  ModularDevice::Method & stop_method = modular_server_.createMethod(constants::stop_method_name);
   stop_method.attachCallback(callbacks::stopCallback);
 
-  ModularDevice::Method& is_playing_method = modular_server_.createMethod(constants::is_playing_method_name);
+  ModularDevice::Method & is_playing_method = modular_server_.createMethod(constants::is_playing_method_name);
   is_playing_method.attachCallback(callbacks::isPlayingCallback);
   is_playing_method.setReturnTypeBool();
 
-  ModularDevice::Method& get_last_audio_path_played_method = modular_server_.createMethod(constants::get_last_audio_path_played_method_name);
+  ModularDevice::Method & get_last_audio_path_played_method = modular_server_.createMethod(constants::get_last_audio_path_played_method_name);
   get_last_audio_path_played_method.attachCallback(callbacks::getLastAudioPathPlayedCallback);
   get_last_audio_path_played_method.setReturnTypeString();
 
-  ModularDevice::Method& get_position_method = modular_server_.createMethod(constants::get_position_method_name);
+  ModularDevice::Method & get_position_method = modular_server_.createMethod(constants::get_position_method_name);
   get_position_method.attachCallback(callbacks::getPositionCallback);
   get_position_method.setReturnTypeLong();
 
-  ModularDevice::Method& get_length_method = modular_server_.createMethod(constants::get_length_method_name);
+  ModularDevice::Method & get_length_method = modular_server_.createMethod(constants::get_length_method_name);
   get_length_method.attachCallback(callbacks::getLengthCallback);
   get_length_method.setReturnTypeLong();
 
-  ModularDevice::Method& get_percent_complete_method = modular_server_.createMethod(constants::get_percent_complete_method_name);
+  ModularDevice::Method & get_percent_complete_method = modular_server_.createMethod(constants::get_percent_complete_method_name);
   get_percent_complete_method.attachCallback(callbacks::getPercentCompleteCallback);
   get_percent_complete_method.setReturnTypeLong();
 
@@ -175,17 +175,17 @@ void Controller::update()
   updatePlaying();
 }
 
-ModularDevice::ModularServer& Controller::getModularServer()
+ModularDevice::ModularServer & Controller::getModularServer()
 {
   return modular_server_;
 }
 
-SDInterface& Controller::getSDInterface()
+SDInterface & Controller::getSDInterface()
 {
   return sd_interface_;
 }
 
-bool Controller::playPath(const char *path)
+bool Controller::playPath(const char * path)
 {
   char path_upper[constants::STRING_LENGTH_PATH];
   String(path).toUpperCase().toCharArray(path_upper,constants::STRING_LENGTH_PATH);
@@ -210,7 +210,7 @@ bool Controller::playPath(const char *path)
   stop();
   bool playing = false;
 
-  char *raw_ext = strstr(path_upper,constants::audio_ext_raw);
+  char * raw_ext = strstr(path_upper,constants::audio_ext_raw);
   if (raw_ext != NULL)
   {
     audio_type_playing_ = constants::RAW_TYPE;
@@ -222,7 +222,7 @@ bool Controller::playPath(const char *path)
 
   if (!playing)
   {
-    char *wav_ext = strstr(path_upper,constants::audio_ext_wav);
+    char * wav_ext = strstr(path_upper,constants::audio_ext_wav);
     if (wav_ext != NULL)
     {
       audio_type_playing_ = constants::WAV_TYPE;
@@ -338,7 +338,7 @@ bool Controller::isPlaying()
   return playing_;
 }
 
-const char* Controller::getLastAudioPathPlayed()
+const char * Controller::getLastAudioPathPlayed()
 {
   return path_played_;
 }
@@ -378,7 +378,7 @@ bool Controller::codecEnabled()
   return codec_enabled_;
 }
 
-bool Controller::isAudioPath(const char *path)
+bool Controller::isAudioPath(const char * path)
 {
   char path_upper[constants::STRING_LENGTH_PATH];
   String(path).toUpperCase().toCharArray(path_upper,constants::STRING_LENGTH_PATH);
@@ -386,8 +386,8 @@ bool Controller::isAudioPath(const char *path)
   bool audio_path = false;
   for (unsigned int i=0;i<constants::AUDIO_EXT_COUNT;++i)
   {
-    const char *audio_ext = constants::audio_exts[i];
-    char *audio_ext_path = strstr(path_upper,audio_ext);
+    const char * audio_ext = constants::audio_exts[i];
+    char * audio_ext_path = strstr(path_upper,audio_ext);
     if (audio_ext_path != NULL)
     {
       audio_path = true;

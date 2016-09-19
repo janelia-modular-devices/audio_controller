@@ -39,9 +39,9 @@ extern const size_t sd_card_cs_pin;
 extern const size_t sd_card_mosi_pin;
 extern const size_t sd_card_sck_pin;
 
-extern const char* const audio_ext_raw;
-extern const char* const audio_ext_wav;
-extern const char* const audio_exts[AUDIO_EXT_COUNT];
+extern const char * const audio_ext_raw;
+extern const char * const audio_ext_wav;
+extern const char * const audio_exts[AUDIO_EXT_COUNT];
 enum audio_t
   {
     RAW_TYPE,
@@ -50,12 +50,12 @@ enum audio_t
     NOISE_TYPE,
   };
 
-extern const char* const sd_prefix;
+extern const char * const sd_prefix;
 
 extern ConstantString device_name;
 
 // Fields
-// Field values must be long, double, bool, long[], double[], bool[], char[]
+// Field values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
 extern ConstantString volume_field_name;
 extern const double volume_min;
 extern const double volume_max;

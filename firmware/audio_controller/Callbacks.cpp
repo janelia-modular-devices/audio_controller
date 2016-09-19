@@ -13,12 +13,12 @@ namespace callbacks
 // Callbacks must be non-blocking (avoid 'delay')
 //
 // modular_server.getParameterValue must be cast to either:
-// const char*
+// const char *
 // long
 // double
 // bool
-// ArduinoJson::JsonArray&
-// ArduinoJson::JsonObject&
+// ArduinoJson::JsonArray &
+// ArduinoJson::JsonObject &
 //
 // For more info read about ArduinoJson parsing https://github.com/janelia-arduino/ArduinoJson
 //
@@ -27,11 +27,11 @@ namespace callbacks
 // modular_server.getFieldElementValue type must match the field array element default type
 // modular_server.setFieldElementValue type must match the field array element default type
 
-ModularDevice::ModularServer& modular_server = controller.getModularServer();
+ModularDevice::ModularServer & modular_server = controller.getModularServer();
 
 void getSDCardInfoCallback()
 {
-  SDInterface& sd_interface = controller.getSDInterface();
+  SDInterface & sd_interface = controller.getSDInterface();
   modular_server.writeResultKeyToResponse();
   modular_server.beginResponseObject();
   modular_server.writeToResponse("detected",sd_interface.getDetected());
@@ -43,7 +43,7 @@ void getSDCardInfoCallback()
   modular_server.endResponseObject();
 }
 
-void addDirectoryToResponse(File dir, const char *pwd)
+void addDirectoryToResponse(File dir, const char * pwd)
 {
   while (true)
   {
@@ -97,7 +97,7 @@ void playPathCallback()
     modular_server.sendErrorResponse("No audio codec chip detected.");
     return;
   }
-  const char* audio_path = modular_server.getParameterValue(constants::audio_path_parameter_name);
+  const char * audio_path = modular_server.getParameterValue(constants::audio_path_parameter_name);
   if (!controller.isAudioPath(audio_path))
   {
     char err_msg[constants::STRING_LENGTH_ERROR_MESSAGE];
