@@ -1,0 +1,3 @@
+[submodule "firmware/AudioController"]
+	path = firmware/AudioController
+	url = https://github.com/peterpolidoro/AudioController.git
