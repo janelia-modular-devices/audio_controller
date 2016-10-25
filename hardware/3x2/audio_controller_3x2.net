@@ -1,15 +1,15 @@
 (export (version D)
   (design
-    (source /home/polidorop/git/modular-devices/audio_controller/pcb/teensy/audio_controller_teensy.sch)
+    (source /home/polidorop/git/modular-devices/audio_controller/pcb/3x2/audio_controller_3x2.sch)
     (date "Mon 08 Aug 2016 01:52:43 PM EDT")
     (tool "Eeschema 4.1.0-alpha+201608010716+6997~46~ubuntu16.04.1-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
-        (title audio_controller_teensy)
+        (title audio_controller_3x2)
         (company Janelia)
         (rev 1.1)
         (date)
-        (source audio_controller_teensy.sch)
+        (source audio_controller_3x2.sch)
         (comment (number 1) (value ""))
         (comment (number 2) (value ""))
         (comment (number 3) (value ""))
@@ -17,7 +17,7 @@
   (components
     (comp (ref P1)
       (value HEADER_02X08_SMD)
-      (footprint audio_controller_teensy:HEADER_02x08_SMD)
+      (footprint audio_controller_3x2:HEADER_02x08_SMD)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) S9187-ND)
@@ -27,7 +27,7 @@
       (tstamp 578D30F0))
     (comp (ref U1)
       (value TLE7230R)
-      (footprint audio_controller_teensy:PG-DSO-36)
+      (footprint audio_controller_3x2:PG-DSO-36)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) TLE7230RCT-ND)
@@ -37,7 +37,7 @@
       (tstamp 578D35FA))
     (comp (ref C2)
       (value 0.1uF)
-      (footprint audio_controller_teensy:SM1210)
+      (footprint audio_controller_3x2:SM1210)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 478-3586-1-ND)
@@ -47,7 +47,7 @@
       (tstamp 578D3F4C))
     (comp (ref L2)
       (value LED_24V)
-      (footprint audio_controller_teensy:LED_555-3XXX)
+      (footprint audio_controller_3x2:LED_555-3XXX)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 350-1723-ND)
@@ -57,7 +57,7 @@
       (tstamp 578D474F))
     (comp (ref L3)
       (value LED_24V)
-      (footprint audio_controller_teensy:LED_555-3XXX)
+      (footprint audio_controller_3x2:LED_555-3XXX)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 350-1723-ND)
@@ -67,7 +67,7 @@
       (tstamp 578D495D))
     (comp (ref L4)
       (value LED_24V)
-      (footprint audio_controller_teensy:LED_555-3XXX)
+      (footprint audio_controller_3x2:LED_555-3XXX)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 350-1723-ND)
@@ -77,7 +77,7 @@
       (tstamp 578D49BB))
     (comp (ref L5)
       (value LED_24V)
-      (footprint audio_controller_teensy:LED_555-3XXX)
+      (footprint audio_controller_3x2:LED_555-3XXX)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 350-1723-ND)
@@ -87,7 +87,7 @@
       (tstamp 578D49F0))
     (comp (ref L6)
       (value LED_24V)
-      (footprint audio_controller_teensy:LED_555-3XXX)
+      (footprint audio_controller_3x2:LED_555-3XXX)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 350-1723-ND)
@@ -97,7 +97,7 @@
       (tstamp 578D4A30))
     (comp (ref L7)
       (value LED_24V)
-      (footprint audio_controller_teensy:LED_555-3XXX)
+      (footprint audio_controller_3x2:LED_555-3XXX)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 350-1723-ND)
@@ -107,7 +107,7 @@
       (tstamp 578D4A73))
     (comp (ref L8)
       (value LED_24V)
-      (footprint audio_controller_teensy:LED_555-3XXX)
+      (footprint audio_controller_3x2:LED_555-3XXX)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 350-1723-ND)
@@ -117,7 +117,7 @@
       (tstamp 578D4AB5))
     (comp (ref L9)
       (value LED_24V)
-      (footprint audio_controller_teensy:LED_555-3XXX)
+      (footprint audio_controller_3x2:LED_555-3XXX)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 350-1723-ND)
@@ -127,7 +127,7 @@
       (tstamp 578D4AF6))
     (comp (ref L1)
       (value LED_24V)
-      (footprint audio_controller_teensy:LED_555-3XXX)
+      (footprint audio_controller_3x2:LED_555-3XXX)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 350-1723-ND)
@@ -137,7 +137,7 @@
       (tstamp 578D4B9A))
     (comp (ref SW1)
       (value SPST_SLIDE_AS)
-      (footprint audio_controller_teensy:SPST_SLIDE_AS)
+      (footprint audio_controller_3x2:SPST_SLIDE_AS)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 360-2610-ND)
@@ -147,7 +147,7 @@
       (tstamp 578D4BFB))
     (comp (ref C1)
       (value 10uF)
-      (footprint audio_controller_teensy:SM1210)
+      (footprint audio_controller_3x2:SM1210)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) 445-4536-1-ND)
@@ -157,7 +157,7 @@
       (tstamp 578FA17B))
     (comp (ref MDT1)
       (value MODULAR_DEVICE_TEENSY_MALE)
-      (footprint audio_controller_teensy:MODULAR_DEVICE_TEENSY_MALE)
+      (footprint audio_controller_3x2:MODULAR_DEVICE_TEENSY_MALE)
       (fields
         (field (name Vendor) digikey)
         (field (name PartNumber) S1011E-16-ND)
@@ -175,7 +175,7 @@
       (fields
         (field (name Reference) C)
         (field (name Value) 0.1uF)
-        (field (name Footprint) audio_controller_teensy:SM1210)
+        (field (name Footprint) audio_controller_3x2:SM1210)
         (field (name Vendor) digikey)
         (field (name PartNumber) 478-3586-1-ND)
         (field (name Description) "CAP CER 0.1UF 50V 10% X7R 1210"))
@@ -190,7 +190,7 @@
       (fields
         (field (name Reference) C)
         (field (name Value) 10uF)
-        (field (name Footprint) audio_controller_teensy:SM1210)
+        (field (name Footprint) audio_controller_3x2:SM1210)
         (field (name Vendor) digikey)
         (field (name PartNumber) 445-4536-1-ND)
         (field (name Description) "CAP CER 10UF 50V 10% X7S 1210"))
@@ -206,7 +206,7 @@
       (fields
         (field (name Reference) P)
         (field (name Value) HEADER_02X08_SMD)
-        (field (name Footprint) audio_controller_teensy:HEADER_02x08_SMD)
+        (field (name Footprint) audio_controller_3x2:HEADER_02x08_SMD)
         (field (name Vendor) digikey)
         (field (name PartNumber) S9187-ND)
         (field (name Description) "CONN HEADR 2.54MM 16POS GOLD SMD"))
@@ -239,7 +239,7 @@
       (fields
         (field (name Reference) L)
         (field (name Value) LED_24V)
-        (field (name Footprint) audio_controller_teensy:LED_555-3XXX)
+        (field (name Footprint) audio_controller_3x2:LED_555-3XXX)
         (field (name Vendor) digikey)
         (field (name PartNumber) 350-1723-ND)
         (field (name Description) "LED 2MM 24V VERTICAL RED PC MNT"))
@@ -250,7 +250,7 @@
       (fields
         (field (name Reference) MDT)
         (field (name Value) MODULAR_DEVICE_TEENSY_MALE)
-        (field (name Footprint) audio_controller_teensy:MODULAR_DEVICE_TEENSY_MALE)
+        (field (name Footprint) audio_controller_3x2:MODULAR_DEVICE_TEENSY_MALE)
         (field (name Vendor) digikey)
         (field (name PartNumber) S1011E-16-ND)
         (field (name Description) "16 Position Header Through Hole Male Pins")
@@ -292,7 +292,7 @@
       (fields
         (field (name Reference) SW)
         (field (name Value) SPST_SLIDE_AS)
-        (field (name Footprint) audio_controller_teensy:SPST_SLIDE_AS)
+        (field (name Footprint) audio_controller_3x2:SPST_SLIDE_AS)
         (field (name Vendor) digikey)
         (field (name PartNumber) 360-2610-ND)
         (field (name Description) "SWITCH SLIDE SPST 0.4VA 28V"))
@@ -303,7 +303,7 @@
       (fields
         (field (name Reference) U)
         (field (name Value) TLE7230R)
-        (field (name Footprint) audio_controller_teensy:PG-DSO-36)
+        (field (name Footprint) audio_controller_3x2:PG-DSO-36)
         (field (name Vendor) digikey)
         (field (name PartNumber) TLE7230RCT-ND)
         (field (name Description) "IC SW SMART OCTAL LOWSIDE PDSO36"))

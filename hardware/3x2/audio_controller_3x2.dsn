@@ -1,4 +1,4 @@
-(pcb "/home/polidorop/git/modular-devices/audio_controller/pcb/teensy/audio_controller_teensy.dsn"
+(pcb "/home/polidorop/git/modular-devices/audio_controller/pcb/3x2/audio_controller_3x2.dsn"
   (parser
     (string_quote ")
     (space_in_quoted_tokens on)
@@ -33,11 +33,11 @@
     )
   )
   (placement
-    (component audio_controller_teensy:SM1210
+    (component audio_controller_3x2:SM1210
       (place C1 85725 -91440 back 0 (PN 10uF))
       (place C2 128905 -107950 back 180 (PN 0.1uF))
     )
-    (component "audio_controller_teensy:LED_555-3XXX"
+    (component "audio_controller_3x2:LED_555-3XXX"
       (place L1 84455 -99695 front 180 (PN LED_24V))
       (place L2 117475 -106045 front 180 (PN LED_24V))
       (place L3 114935 -106045 front 180 (PN LED_24V))
@@ -48,21 +48,21 @@
       (place L8 102235 -106045 front 180 (PN LED_24V))
       (place L9 99695 -106045 front 180 (PN LED_24V))
     )
-    (component audio_controller_teensy:HEADER_02x08_SMD
+    (component audio_controller_3x2:HEADER_02x08_SMD
       (place P1 108585 -96520 front 0 (PN HEADER_02X08_SMD))
     )
-    (component audio_controller_teensy:SPST_SLIDE_AS
+    (component audio_controller_3x2:SPST_SLIDE_AS
       (place SW1 88265 -99695 front 0 (PN SPST_SLIDE_AS))
     )
-    (component "audio_controller_teensy:PG-DSO-36"
+    (component "audio_controller_3x2:PG-DSO-36"
       (place U1 128905 -96520 back 90 (PN TLE7230R))
     )
-    (component audio_controller_teensy:MODULAR_DEVICE_TEENSY_MALE
+    (component audio_controller_3x2:MODULAR_DEVICE_TEENSY_MALE
       (place MDT1 95250 -99695 front 0 (PN MODULAR_DEVICE_TEENSY_MALE))
     )
   )
   (library
-    (image audio_controller_teensy:SM1210
+    (image audio_controller_3x2:SM1210
       (outline (path signal 127  -762 1397  -2286 1397))
       (outline (path signal 127  -2286 1397  -2286 -1397))
       (outline (path signal 127  -2286 -1397  -762 -1397))
@@ -72,7 +72,7 @@
       (pin Rect[T]Pad_1270x2540_um 1 -1524 0)
       (pin Rect[T]Pad_1270x2540_um 2 1524 0)
     )
-    (image "audio_controller_teensy:LED_555-3XXX"
+    (image "audio_controller_3x2:LED_555-3XXX"
       (outline (path signal 228.6  -508 508  508 508))
       (outline (path signal 228.6  0 0  0 1016))
       (outline (path signal 228.6  -1270 3810  1270 3810))
@@ -82,7 +82,7 @@
       (pin Oval[A]Pad_1524x2032_um 1 0 2540)
       (pin Oval[A]Pad_1524x2032_um 2 0 -2540)
     )
-    (image audio_controller_teensy:HEADER_02x08_SMD
+    (image audio_controller_3x2:HEADER_02x08_SMD
       (outline (path signal 381  13970 4572  -13970 4572))
       (outline (path signal 381  -13970 4572  -13970 -4572))
       (outline (path signal 381  -13970 -4572  13970 -4572))
@@ -107,7 +107,7 @@
       (pin Rect[T]Pad_1016x4495.8_um 15 -8890 2997.2)
       (pin Rect[T]Pad_1016x4495.8_um 16 -8890 -2997.2)
     )
-    (image audio_controller_teensy:SPST_SLIDE_AS
+    (image audio_controller_3x2:SPST_SLIDE_AS
       (outline (path signal 381  -2540 5080  2540 5080))
       (outline (path signal 381  2540 5080  2540 -5080))
       (outline (path signal 381  2540 -5080  -2540 -5080))
@@ -115,7 +115,7 @@
       (pin Oval[A]Pad_2159x1651_um 1 -990.6 2540)
       (pin Oval[A]Pad_2159x1651_um 3 -990.6 -2540)
     )
-    (image "audio_controller_teensy:PG-DSO-36"
+    (image "audio_controller_3x2:PG-DSO-36"
       (outline (path signal 381  -5750 -4000  -5786.71 -4231.76  -5893.24 -4440.84  -6059.16 -4606.76
             -6268.24 -4713.29  -6500 -4750  -6731.76 -4713.29  -6940.84 -4606.76
             -7106.76 -4440.84  -7213.29 -4231.76  -7250 -4000  -7213.29 -3768.24
@@ -163,7 +163,7 @@
       (pin Rect[T]Pad_450x1830_um 35 -4875 6740)
       (pin Rect[T]Pad_450x1830_um 36 -5525 6740)
     )
-    (image audio_controller_teensy:MODULAR_DEVICE_TEENSY_MALE
+    (image audio_controller_3x2:MODULAR_DEVICE_TEENSY_MALE
       (outline (path signal 228.6  -15240 12700  -15364.3 11915.1  -15725.1 11207  -16287 10645.1
             -16995.1 10284.3  -17780 10160  -18564.9 10284.3  -19273 10645.1
             -19834.9 11207  -20195.7 11915.1  -20320 12700  -20195.7 13484.9

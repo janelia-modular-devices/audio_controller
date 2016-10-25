@@ -14,7 +14,7 @@
 
   (page A4)
   (title_block
-    (title audio_controller_teensy)
+    (title audio_controller_3x2)
     (rev 1.1)
   )
 
@@ -198,7 +198,7 @@
     (add_net VDD)
   )
 
-  (module audio_controller_teensy:SM1210 (layer B.Cu) (tedit 5481F170) (tstamp 5751D183)
+  (module audio_controller_3x2:SM1210 (layer B.Cu) (tedit 5481F170) (tstamp 5751D183)
     (at 85.725 91.44 180)
     (tags "CMS SM")
     (path /578FA17B)
@@ -226,7 +226,7 @@
     )
   )
 
-  (module audio_controller_teensy:SM1210 (layer B.Cu) (tedit 5481F170) (tstamp 5751D18F)
+  (module audio_controller_3x2:SM1210 (layer B.Cu) (tedit 5481F170) (tstamp 5751D18F)
     (at 128.905 107.95)
     (tags "CMS SM")
     (path /578D3F4C)
@@ -254,7 +254,7 @@
     )
   )
 
-  (module audio_controller_teensy:LED_555-3XXX (layer F.Cu) (tedit 578FC60A) (tstamp 578F9934)
+  (module audio_controller_3x2:LED_555-3XXX (layer F.Cu) (tedit 578FC60A) (tstamp 578F9934)
     (at 84.455 99.695 180)
     (path /578D4B9A)
     (fp_text reference L1 (at 0 -5.08 90) (layer F.SilkS)
@@ -275,7 +275,7 @@
       (net 1 GND))
   )
 
-  (module audio_controller_teensy:LED_555-3XXX (layer F.Cu) (tedit 57A8CAF0) (tstamp 578F9940)
+  (module audio_controller_3x2:LED_555-3XXX (layer F.Cu) (tedit 57A8CAF0) (tstamp 578F9940)
     (at 117.475 106.045 180)
     (path /578D474F)
     (fp_text reference L2 (at -2.54 0 90) (layer F.SilkS)
@@ -296,7 +296,7 @@
       (net 5 /OUT0))
   )
 
-  (module audio_controller_teensy:LED_555-3XXX (layer F.Cu) (tedit 578FC2D0) (tstamp 578F994C)
+  (module audio_controller_3x2:LED_555-3XXX (layer F.Cu) (tedit 578FC2D0) (tstamp 578F994C)
     (at 114.935 106.045 180)
     (path /578D495D)
     (fp_text reference L3 (at 0 -5.842 270) (layer F.SilkS) hide
@@ -317,7 +317,7 @@
       (net 6 /OUT1))
   )
 
-  (module audio_controller_teensy:LED_555-3XXX (layer F.Cu) (tedit 578FC2D6) (tstamp 578F9958)
+  (module audio_controller_3x2:LED_555-3XXX (layer F.Cu) (tedit 578FC2D6) (tstamp 578F9958)
     (at 112.395 106.045 180)
     (path /578D49BB)
     (fp_text reference L4 (at 0 -5.842 270) (layer F.SilkS) hide
@@ -338,7 +338,7 @@
       (net 7 /OUT2))
   )
 
-  (module audio_controller_teensy:LED_555-3XXX (layer F.Cu) (tedit 578FC2D9) (tstamp 578F9964)
+  (module audio_controller_3x2:LED_555-3XXX (layer F.Cu) (tedit 578FC2D9) (tstamp 578F9964)
     (at 109.855 106.045 180)
     (path /578D49F0)
     (fp_text reference L5 (at 0 -5.842 270) (layer F.SilkS) hide
@@ -359,7 +359,7 @@
       (net 8 /OUT3))
   )
 
-  (module audio_controller_teensy:LED_555-3XXX (layer F.Cu) (tedit 578FC2DD) (tstamp 578F9970)
+  (module audio_controller_3x2:LED_555-3XXX (layer F.Cu) (tedit 578FC2DD) (tstamp 578F9970)
     (at 107.315 106.045 180)
     (path /578D4A30)
     (fp_text reference L6 (at 0 -5.842 270) (layer F.SilkS) hide
@@ -380,7 +380,7 @@
       (net 9 /OUT4))
   )
 
-  (module audio_controller_teensy:LED_555-3XXX (layer F.Cu) (tedit 578FC2E2) (tstamp 578F997C)
+  (module audio_controller_3x2:LED_555-3XXX (layer F.Cu) (tedit 578FC2E2) (tstamp 578F997C)
     (at 104.775 106.045 180)
     (path /578D4A73)
     (fp_text reference L7 (at 0 -5.842 270) (layer F.SilkS) hide
@@ -401,7 +401,7 @@
       (net 10 /OUT5))
   )
 
-  (module audio_controller_teensy:LED_555-3XXX (layer F.Cu) (tedit 578FC2E6) (tstamp 578F9988)
+  (module audio_controller_3x2:LED_555-3XXX (layer F.Cu) (tedit 578FC2E6) (tstamp 578F9988)
     (at 102.235 106.045 180)
     (path /578D4AB5)
     (fp_text reference L8 (at 0 -5.842 270) (layer F.SilkS) hide
@@ -422,7 +422,7 @@
       (net 11 /OUT6))
   )
 
-  (module audio_controller_teensy:LED_555-3XXX (layer F.Cu) (tedit 578FC2CA) (tstamp 578F9994)
+  (module audio_controller_3x2:LED_555-3XXX (layer F.Cu) (tedit 578FC2CA) (tstamp 578F9994)
     (at 99.695 106.045 180)
     (path /578D4AF6)
     (fp_text reference L9 (at 2.54 0 90) (layer F.SilkS)
@@ -443,7 +443,7 @@
       (net 12 /OUT7))
   )
 
-  (module audio_controller_teensy:HEADER_02x08_SMD (layer F.Cu) (tedit 578FC7D1) (tstamp 578F9995)
+  (module audio_controller_3x2:HEADER_02x08_SMD (layer F.Cu) (tedit 578FC7D1) (tstamp 578F9995)
     (at 108.585 96.52)
     (path /578D30F0)
     (fp_text reference P1 (at 15.24 3.81 90) (layer F.SilkS)
@@ -493,7 +493,7 @@
       (net 12 /OUT7))
   )
 
-  (module audio_controller_teensy:SPST_SLIDE_AS (layer F.Cu) (tedit 57A8CC44) (tstamp 578F99AF)
+  (module audio_controller_3x2:SPST_SLIDE_AS (layer F.Cu) (tedit 57A8CC44) (tstamp 578F99AF)
     (at 88.265 99.695)
     (path /578D4BFB)
     (fp_text reference SW1 (at 3.81 0 90) (layer F.SilkS)
@@ -518,7 +518,7 @@
       (net 4 /LED_PWR))
   )
 
-  (module audio_controller_teensy:PG-DSO-36 (layer B.Cu) (tedit 56D850C7) (tstamp 578F99E7)
+  (module audio_controller_3x2:PG-DSO-36 (layer B.Cu) (tedit 56D850C7) (tstamp 578F99E7)
     (at 128.905 96.52 270)
     (path /578D35FA)
     (fp_text reference U1 (at -6.75 -6.75 180) (layer B.SilkS)
@@ -607,7 +607,7 @@
       (net 1 GND) (solder_mask_margin 0.05) (clearance 0.05))
   )
 
-  (module audio_controller_teensy:MODULAR_DEVICE_TEENSY_MALE (layer F.Cu) (tedit 579923B4) (tstamp 57A8D02B)
+  (module audio_controller_3x2:MODULAR_DEVICE_TEENSY_MALE (layer F.Cu) (tedit 579923B4) (tstamp 57A8D02B)
     (at 95.25 99.695)
     (path /57A8C92C)
     (fp_text reference MDT1 (at 0 0) (layer F.SilkS) hide
@@ -752,7 +752,7 @@
   (gr_text 0 (at 117.475 90.17 90) (layer F.SilkS)
     (effects (font (thickness 0.381)) (justify left))
   )
-  (gr_text "Janelia Modular Device\naudio_controller\nmodel_number: 1111\n08/2016 ver 1.1 teensy" (at 77.47 99.695 90) (layer F.SilkS)
+  (gr_text "Janelia Modular Device\naudio_controller\nmodel_number: 1111\n08/2016 ver 1.1 3x2" (at 77.47 99.695 90) (layer F.SilkS)
     (effects (font (size 1.016 1.016) (thickness 0.254)))
   )
 

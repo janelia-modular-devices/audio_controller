@@ -1,13 +1,13 @@
 
-(session audio_controller_teensy.ses
-  (base_design audio_controller_teensy.dsn)
+(session audio_controller_3x2.ses
+  (base_design audio_controller_3x2.dsn)
   (placement
     (resolution um 10)
-    (component audio_controller_teensy:SM1210
+    (component audio_controller_3x2:SM1210
       (place C1 857250 -914400 back 0)
       (place C2 1289050 -1079500 back 180)
     )
-    (component "audio_controller_teensy:LED_555-3XXX"
+    (component "audio_controller_3x2:LED_555-3XXX"
       (place L1 844550 -996950 front 180)
       (place L2 1174750 -1060450 front 180)
       (place L3 1149350 -1060450 front 180)
@@ -18,16 +18,16 @@
       (place L8 1022350 -1060450 front 180)
       (place L9 996950 -1060450 front 180)
     )
-    (component audio_controller_teensy:HEADER_02x08_SMD
+    (component audio_controller_3x2:HEADER_02x08_SMD
       (place P1 1085850 -965200 front 0)
     )
-    (component audio_controller_teensy:SPST_SLIDE_AS
+    (component audio_controller_3x2:SPST_SLIDE_AS
       (place SW1 882650 -996950 front 0)
     )
-    (component "audio_controller_teensy:PG-DSO-36"
+    (component "audio_controller_3x2:PG-DSO-36"
       (place U1 1289050 -965200 back 90)
     )
-    (component audio_controller_teensy:MODULAR_DEVICE_TEENSY_MALE
+    (component audio_controller_3x2:MODULAR_DEVICE_TEENSY_MALE
       (place MDT1 952500 -996950 front 0)
     )
   )

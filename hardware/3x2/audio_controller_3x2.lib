@@ -6,7 +6,7 @@ EESchema-LIBRARY Version 2.3
 DEF 0.1uF C 0 10 N Y 1 F N
 F0 "C" 0 100 40 H V L CNN
 F1 "0.1uF" 0 0 30 H V C CNN
-F2 "audio_controller_teensy:SM1210" 38 -150 30 H I C CNN
+F2 "audio_controller_3x2:SM1210" 38 -150 30 H I C CNN
 F3 "" 0 100 60 H V C CNN
 F4 "digikey" 100 200 60 H I C CNN "Vendor"
 F5 "478-3586-1-ND" 200 300 60 H I C CNN "PartNumber"
@@ -29,7 +29,7 @@ ENDDEF
 DEF 10uF C 0 10 N Y 1 F N
 F0 "C" 0 100 40 H V L CNN
 F1 "10uF" 0 0 30 H V C CNN
-F2 "audio_controller_teensy:SM1210" 38 -150 30 H I C CNN
+F2 "audio_controller_3x2:SM1210" 38 -150 30 H I C CNN
 F3 "" 0 100 60 H V C CNN
 F4 "digikey" 100 200 60 H I C CNN "Vendor"
 F5 "445-4536-1-ND" 200 300 60 H I C CNN "PartNumber"
@@ -52,7 +52,7 @@ ENDDEF
 DEF 2.2uF C 0 10 N Y 1 F N
 F0 "C" 0 100 40 H V L CNN
 F1 "2.2uF" 0 0 30 H V C CNN
-F2 "audio_controller_teensy:SM1210" 38 -150 30 H I C CNN
+F2 "audio_controller_3x2:SM1210" 38 -150 30 H I C CNN
 F3 "" 0 0 60 H V C CNN
 F4 "digikey" 100 200 60 H I C CNN "Vendor"
 F5 "478-3591-1-ND" 200 300 60 H I C CNN "PartNumber"
@@ -75,7 +75,7 @@ ENDDEF
 DEF AP7313_1.5V U 0 40 Y Y 1 F N
 F0 "U" 150 -200 60 H V C CNN
 F1 "AP7313_1.5V" 0 100 60 H V C CNN
-F2 "audio_controller_teensy:SOT-23-3" 50 -300 60 H I C CNN
+F2 "audio_controller_3x2:SOT-23-3" 50 -300 60 H I C CNN
 F3 "" 0 0 60 H I C CNN
 F4 "digikey" 250 -100 60 H I C CNN "Vendor"
 F5 "AP7313-15SAG-7DICT-ND" 350 0 60 H I C CNN "PartNumber"
@@ -93,7 +93,7 @@ ENDDEF
 DEF CONV_DC_DC_5V_1A REG 0 40 Y Y 1 F N
 F0 "REG" 200 -300 60 H V C CNN
 F1 "CONV_DC_DC_5V_1A" 0 100 60 H V C CNN
-F2 "audio_controller_teensy:DC_DC_CONV_R78C" 100 -400 60 H I C CNN
+F2 "audio_controller_3x2:DC_DC_CONV_R78C" 100 -400 60 H I C CNN
 F3 "" 200 -300 60 H V C CNN
 F4 "digikey" 0 -200 60 H I C CNN "Vendor"
 F5 "945-1395-5-ND" 0 -100 60 H I C CNN "PartNumber"
@@ -111,7 +111,7 @@ ENDDEF
 DEF HEADER_02X08_SMD P 0 1 Y N 1 F N
 F0 "P" 0 450 50 H V C CNN
 F1 "HEADER_02X08_SMD" 0 0 50 V V C CNN
-F2 "audio_controller_teensy:HEADER_02x08_SMD" 0 -1200 60 H I C CNN
+F2 "audio_controller_3x2:HEADER_02x08_SMD" 0 -1200 60 H I C CNN
 F3 "" 0 -1200 60 H V C CNN
 F4 "digikey" 100 550 60 H I C CNN "Vendor"
 F5 "S9187-ND" 200 650 60 H I C CNN "PartNumber"
@@ -164,7 +164,7 @@ ENDDEF
 DEF KT_SWITCH SW 0 0 N Y 1 F N
 F0 "SW" 0 -50 40 H V C CNN
 F1 "KT_SWITCH" 0 100 40 H V C CNN
-F2 "audio_controller_teensy:KT_SWITCH" -100 -200 60 H I C CNN
+F2 "audio_controller_3x2:KT_SWITCH" -100 -200 60 H I C CNN
 F3 "" 0 -50 60 H V C CNN
 F4 "digikey" 100 200 60 H I C CNN "Vendor"
 F5 "CKN1860CT-ND" 200 300 60 H I C CNN "PartNumber"
@@ -183,7 +183,7 @@ ENDDEF
 DEF LED_24V L 0 40 Y N 1 F N
 F0 "L" 0 100 50 H V C CNN
 F1 "LED_24V" 0 -100 50 H V C CNN
-F2 "audio_controller_teensy:LED_555-3XXX" -100 0 60 H I C CNN
+F2 "audio_controller_3x2:LED_555-3XXX" -100 0 60 H I C CNN
 F3 "" 0 100 60 H V C CNN
 F4 "digikey" 100 200 60 H I C CNN "Vendor"
 F5 "350-1723-ND" 200 300 60 H I C CNN "PartNumber"
@@ -212,7 +212,7 @@ ENDDEF
 DEF MODULAR_DEVICE_TEENSY_MALE MDT 0 40 Y Y 1 F N
 F0 "MDT" 900 850 60 H V C CNN
 F1 "MODULAR_DEVICE_TEENSY_MALE" 0 850 60 H V C CNN
-F2 "audio_controller_teensy:MODULAR_DEVICE_TEENSY_MALE" 0 1050 60 H I C CNN
+F2 "audio_controller_3x2:MODULAR_DEVICE_TEENSY_MALE" 0 1050 60 H I C CNN
 F3 "" 50 2750 60 H V C CNN
 F4 "digikey" 0 1150 60 H I C CNN "Vendor"
 F5 "S1011E-16-ND" 0 1250 60 H I C CNN "PartNumber"
@@ -260,7 +260,7 @@ ENDDEF
 DEF SGTL5000 U 0 40 Y Y 1 F N
 F0 "U" 400 700 60 H V C CNN
 F1 "SGTL5000" -400 700 60 H V C CNN
-F2 "audio_controller_teensy:QFN-5x5-32" 300 600 60 H I C CNN
+F2 "audio_controller_3x2:QFN-5x5-32" 300 600 60 H I C CNN
 F3 "" 0 0 60 H I C CNN
 F4 "digikey" 500 800 60 H I C CNN "Vendor"
 F5 "SGTL5000XNAA3R2CT-ND" 600 900 60 H I C CNN "PartNumber"
@@ -303,7 +303,7 @@ ENDDEF
 DEF SPST_SLIDE_AS SW 0 0 N Y 1 F N
 F0 "SW" 0 -50 40 H V C CNN
 F1 "SPST_SLIDE_AS" 0 100 40 H V C CNN
-F2 "audio_controller_teensy:SPST_SLIDE_AS" -100 -200 60 H I C CNN
+F2 "audio_controller_3x2:SPST_SLIDE_AS" -100 -200 60 H I C CNN
 F3 "" 0 0 60 H V C CNN
 F4 "digikey" 100 200 60 H I C CNN "Vendor"
 F5 "360-2610-ND" 200 300 60 H I C CNN "PartNumber"
@@ -322,7 +322,7 @@ ENDDEF
 DEF TLE7230R U 0 40 Y Y 1 F N
 F0 "U" 400 500 60 H V C CNN
 F1 "TLE7230R" 0 500 60 H V C CNN
-F2 "audio_controller_teensy:PG-DSO-36" 300 400 60 H I C CNN
+F2 "audio_controller_3x2:PG-DSO-36" 300 400 60 H I C CNN
 F3 "" 400 500 60 H V C CNN
 F4 "digikey" 500 600 60 H I C CNN "Vendor"
 F5 "TLE7230RCT-ND" 600 700 60 H I C CNN "PartNumber"
