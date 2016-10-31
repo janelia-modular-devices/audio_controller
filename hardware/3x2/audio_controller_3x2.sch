@@ -59,7 +59,9 @@ $EndComp
 Wire Wire Line
 	900  1000 900  950 
 Wire Wire Line
-	700  950  1350 950 
+	700  950  900  950 
+Wire Wire Line
+	900  950  1350 950 
 NoConn ~ 3850 850 
 NoConn ~ 3850 1050
 NoConn ~ 1350 1050
@@ -179,7 +181,9 @@ $EndComp
 Wire Wire Line
 	4300 1150 4300 1050
 Wire Wire Line
-	3850 1150 4300 1150
+	3850 1150 4000 1150
+Wire Wire Line
+	4000 1150 4300 1150
 Wire Wire Line
 	4000 1050 4000 1150
 Connection ~ 4000 1150
@@ -272,9 +276,13 @@ F 6 "2.2uF 50V Ceramic Capacitor X7R 1210" H 3200 4250 60  0001 C CNN "Descripti
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1600 3550 1600 3650
+	1600 3550 1600 3600
 Wire Wire Line
-	1600 3600 2050 3600
+	1600 3600 1600 3650
+Wire Wire Line
+	1600 3600 1800 3600
+Wire Wire Line
+	1800 3600 2050 3600
 Wire Wire Line
 	1800 3650 1800 3600
 Connection ~ 1800 3600
@@ -292,7 +300,9 @@ $EndComp
 Wire Wire Line
 	2750 3600 2900 3600
 Wire Wire Line
-	2900 3550 2900 3650
+	2900 3550 2900 3600
+Wire Wire Line
+	2900 3600 2900 3650
 $Comp
 L +3V3 #PWR?
 U 1 1 580FA40A
@@ -364,7 +374,7 @@ U 1 1 580FBFE3
 P 6900 900
 F 0 "L?" V 6950 900 50  0000 C CNN
 F 1 "600@100MHz" V 6850 900 50  0000 C CNN
-F 2 "footprints:SM1210" H 6830 840 50  0001 C CNN
+F 2 "audio_controller_3x2:SM1210" H 6830 840 50  0001 C CNN
 F 3 "" H 6900 900 50  0000 C CNN
 F 4 "digikey" H 7030 1040 60  0001 C CNN "Vendor"
 F 5 "587-1755-1-ND" H 7130 1140 60  0001 C CNN "PartNumber"
@@ -373,11 +383,19 @@ F 6 "FERRITE BEAD 600 OHM 1210 1LN" H 7230 1240 60  0001 C CNN "Description"
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	6450 850  6450 950 
+	6450 850  6450 900 
 Wire Wire Line
-	6450 900  6800 900 
+	6450 900  6450 950 
 Wire Wire Line
-	7000 900  7550 900 
+	6450 900  6600 900 
+Wire Wire Line
+	6600 900  6800 900 
+Wire Wire Line
+	7000 900  7200 900 
+Wire Wire Line
+	7200 900  7350 900 
+Wire Wire Line
+	7350 900  7550 900 
 Wire Wire Line
 	7550 900  7550 950 
 Wire Wire Line
@@ -532,14 +550,22 @@ $EndComp
 Wire Wire Line
 	6650 3550 6650 3600
 Wire Wire Line
-	6650 3600 7050 3600
+	6650 3600 6750 3600
+Wire Wire Line
+	6750 3600 6850 3600
+Wire Wire Line
+	6850 3600 6950 3600
+Wire Wire Line
+	6950 3600 7050 3600
 Wire Wire Line
 	7050 3600 7050 3550
 Wire Wire Line
 	6750 3550 6750 3600
 Connection ~ 6750 3600
 Wire Wire Line
-	6850 3550 6850 3650
+	6850 3550 6850 3600
+Wire Wire Line
+	6850 3600 6850 3650
 Connection ~ 6850 3600
 Wire Wire Line
 	6950 3550 6950 3600
@@ -558,8 +584,54 @@ $EndComp
 Wire Wire Line
 	6050 3000 6000 3000
 Wire Wire Line
-	6000 3000 6000 3150
+	6000 3000 6000 3100
+Wire Wire Line
+	6000 3100 6000 3150
 Wire Wire Line
 	6050 3100 6000 3100
 Connection ~ 6000 3100
+NoConn ~ 7650 2800
+NoConn ~ 7650 2900
+NoConn ~ 7650 2000
+NoConn ~ 7650 2100
+NoConn ~ 7650 2200
+NoConn ~ 7650 2300
+$Comp
+L AUDIO_JACK_3.5MM J?
+U 1 1 5817680D
+P 9400 2550
+F 0 "J?" H 9400 2750 50  0000 C CNN
+F 1 "AUDIO_JACK_3.5MM" H 9400 2350 50  0000 C CNN
+F 2 "audio_controller_3x2:AUDIO_JACK_3.5MM_3PIN" H 9300 2650 50  0001 C CNN
+F 3 "" H 9400 2550 50  0000 C CNN
+F 4 "digikey" H 9500 2850 60  0001 C CNN "Vendor"
+F 5 "CP-3523SJCT-ND" H 9600 2950 60  0001 C CNN "PartNumber"
+F 6 "3.50mm Headphone Phone Jack Stereo Connector Solder" H 9700 3050 60  0001 C CNN "Description"
+	1    9400 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 2450 7750 2450
+Wire Wire Line
+	7650 2550 7750 2550
+Wire Wire Line
+	7650 2650 7750 2650
+Text Label 7750 2450 0    60   ~ 0
+HP_L
+Text Label 7750 2550 0    60   ~ 0
+HP_R
+Text Label 7750 2650 0    60   ~ 0
+HP_VGND
+Wire Wire Line
+	8950 2450 8550 2450
+Wire Wire Line
+	8950 2550 8550 2550
+Wire Wire Line
+	8950 2650 8550 2650
+Text Label 8550 2450 0    60   ~ 0
+HP_L
+Text Label 8550 2550 0    60   ~ 0
+HP_R
+Text Label 8550 2650 0    60   ~ 0
+HP_VGND
 $EndSCHEMATC
