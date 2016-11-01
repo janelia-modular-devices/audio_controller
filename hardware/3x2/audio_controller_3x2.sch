@@ -59,9 +59,7 @@ $EndComp
 Wire Wire Line
 	900  1000 900  950 
 Wire Wire Line
-	700  950  900  950 
-Wire Wire Line
-	900  950  1350 950 
+	700  950  1350 950 
 NoConn ~ 3850 850 
 NoConn ~ 3850 1050
 NoConn ~ 1350 1050
@@ -181,9 +179,7 @@ $EndComp
 Wire Wire Line
 	4300 1150 4300 1050
 Wire Wire Line
-	3850 1150 4000 1150
-Wire Wire Line
-	4000 1150 4300 1150
+	3850 1150 4300 1150
 Wire Wire Line
 	4000 1050 4000 1150
 Connection ~ 4000 1150
@@ -276,13 +272,9 @@ F 6 "2.2uF 50V Ceramic Capacitor X7R 1210" H 3200 4250 60  0001 C CNN "Descripti
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1600 3550 1600 3600
+	1600 3550 1600 3650
 Wire Wire Line
-	1600 3600 1600 3650
-Wire Wire Line
-	1600 3600 1800 3600
-Wire Wire Line
-	1800 3600 2050 3600
+	1600 3600 2050 3600
 Wire Wire Line
 	1800 3650 1800 3600
 Connection ~ 1800 3600
@@ -300,9 +292,7 @@ $EndComp
 Wire Wire Line
 	2750 3600 2900 3600
 Wire Wire Line
-	2900 3550 2900 3600
-Wire Wire Line
-	2900 3600 2900 3650
+	2900 3550 2900 3650
 $Comp
 L +3V3 #PWR?
 U 1 1 580FA40A
@@ -383,19 +373,11 @@ F 6 "FERRITE BEAD 600 OHM 1210 1LN" H 7230 1240 60  0001 C CNN "Description"
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	6450 850  6450 900 
+	6450 850  6450 950 
 Wire Wire Line
-	6450 900  6450 950 
+	6450 900  6800 900 
 Wire Wire Line
-	6450 900  6600 900 
-Wire Wire Line
-	6600 900  6800 900 
-Wire Wire Line
-	7000 900  7200 900 
-Wire Wire Line
-	7200 900  7350 900 
-Wire Wire Line
-	7350 900  7550 900 
+	7000 900  7550 900 
 Wire Wire Line
 	7550 900  7550 950 
 Wire Wire Line
@@ -550,22 +532,14 @@ $EndComp
 Wire Wire Line
 	6650 3550 6650 3600
 Wire Wire Line
-	6650 3600 6750 3600
-Wire Wire Line
-	6750 3600 6850 3600
-Wire Wire Line
-	6850 3600 6950 3600
-Wire Wire Line
-	6950 3600 7050 3600
+	6650 3600 7050 3600
 Wire Wire Line
 	7050 3600 7050 3550
 Wire Wire Line
 	6750 3550 6750 3600
 Connection ~ 6750 3600
 Wire Wire Line
-	6850 3550 6850 3600
-Wire Wire Line
-	6850 3600 6850 3650
+	6850 3550 6850 3650
 Connection ~ 6850 3600
 Wire Wire Line
 	6950 3550 6950 3600
@@ -584,9 +558,7 @@ $EndComp
 Wire Wire Line
 	6050 3000 6000 3000
 Wire Wire Line
-	6000 3000 6000 3100
-Wire Wire Line
-	6000 3100 6000 3150
+	6000 3000 6000 3150
 Wire Wire Line
 	6050 3100 6000 3100
 Connection ~ 6000 3100
@@ -634,4 +606,101 @@ Text Label 8550 2550 0    60   ~ 0
 HP_R
 Text Label 8550 2650 0    60   ~ 0
 HP_VGND
+$Comp
+L 0.15uF C?
+U 1 1 5818C7AA
+P 5750 3050
+F 0 "C?" H 5800 3150 40  0000 L CNN
+F 1 "0.15uF" H 5750 3050 30  0000 C CNN
+F 2 "footprints:SM1210" H 5788 2900 30  0001 C CNN
+F 3 "" H 5750 3050 60  0000 C CNN
+F 4 "digikey" H 5850 3250 60  0001 C CNN "Vendor"
+F 5 "399-11615-1-ND" H 5950 3350 60  0001 C CNN "PartNumber"
+F 6 "0.15uF 100V Ceramic Capacitor X7R 1210" H 6050 3450 60  0001 C CNN "Description"
+	1    5750 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5818C9D7
+P 5750 3300
+F 0 "#PWR?" H 5750 3050 50  0001 C CNN
+F 1 "GND" H 5755 3127 50  0000 C CNN
+F 2 "" H 5750 3300 50  0000 C CNN
+F 3 "" H 5750 3300 50  0000 C CNN
+	1    5750 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5750 2850 5750 2800
+Wire Wire Line
+	5750 2800 6050 2800
+Wire Wire Line
+	5750 3250 5750 3300
+$Comp
+L 2.21k R?
+U 1 1 5818DFC6
+P 5050 1200
+F 0 "R?" V 4950 1200 40  0000 C CNN
+F 1 "2.21k" V 5050 1200 40  0000 C CNN
+F 2 "footprints:SM1210" V 4980 1200 30  0001 C CNN
+F 3 "" H 5050 1200 30  0000 C CNN
+F 4 "digikey" V 5230 1300 60  0001 C CNN "Vendor"
+F 5 "P2.21KAACT-ND" V 5330 1400 60  0001 C CNN "PartNumber"
+F 6 "RES SMD 2.21K OHM 1% 1/2W 1210" V 5430 1500 60  0001 C CNN "Description"
+	1    5050 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L 2.21k R?
+U 1 1 5818E533
+P 5250 1200
+F 0 "R?" V 5150 1200 40  0000 C CNN
+F 1 "2.21k" V 5250 1200 40  0000 C CNN
+F 2 "footprints:SM1210" V 5180 1200 30  0001 C CNN
+F 3 "" H 5250 1200 30  0000 C CNN
+F 4 "digikey" V 5430 1300 60  0001 C CNN "Vendor"
+F 5 "P2.21KAACT-ND" V 5530 1400 60  0001 C CNN "PartNumber"
+F 6 "RES SMD 2.21K OHM 1% 1/2W 1210" V 5630 1500 60  0001 C CNN "Description"
+	1    5250 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 1450 5250 1500
+Wire Wire Line
+	5250 1500 5300 1500
+Wire Wire Line
+	5050 1450 5050 1600
+Wire Wire Line
+	5050 1600 5300 1600
+Text Label 5300 1600 0    60   ~ 0
+SDA
+Text Label 5300 1500 0    60   ~ 0
+SCL
+$Comp
+L +3V3 #PWR?
+U 1 1 5818E70A
+P 5050 900
+F 0 "#PWR?" H 5050 750 50  0001 C CNN
+F 1 "+3V3" H 5050 1050 50  0000 C CNN
+F 2 "" H 5050 900 50  0000 C CNN
+F 3 "" H 5050 900 50  0000 C CNN
+	1    5050 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3V3 #PWR?
+U 1 1 5818E74D
+P 5250 900
+F 0 "#PWR?" H 5250 750 50  0001 C CNN
+F 1 "+3V3" H 5250 1050 50  0000 C CNN
+F 2 "" H 5250 900 50  0000 C CNN
+F 3 "" H 5250 900 50  0000 C CNN
+	1    5250 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5050 900  5050 950 
+Wire Wire Line
+	5250 900  5250 950 
 $EndSCHEMATC
