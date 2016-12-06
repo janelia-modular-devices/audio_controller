@@ -1,3 +1,6 @@
 [submodule "firmware/AudioController"]
 	path = firmware/AudioController
 	url = https://github.com/peterpolidoro/AudioController.git
+[submodule "firmware/AuditoryStimulator"]
+	path = firmware/AuditoryStimulator
+	url = https://github.com/janelia-arduino/AuditoryStimulator.git
