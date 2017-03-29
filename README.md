@@ -1,4 +1,4 @@
-#audio_controller
+# audio_controller
 
 Authors:
 
@@ -8,7 +8,7 @@ License:
 
     BSD
 
-##More Detailed Help on Installation and Usage
+## More Detailed Help on Installation and Usage
 
 [modular-devices](https://github.com/janelia-modular-devices/modular-devices)
 
