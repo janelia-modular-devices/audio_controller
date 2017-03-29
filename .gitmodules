@@ -4,3 +4,6 @@
 [submodule "firmware/AuditoryStimulator"]
 	path = firmware/AuditoryStimulator
 	url = https://github.com/janelia-arduino/AuditoryStimulator.git
+[submodule "hardware/audio_controller_3x2"]
+	path = hardware/audio_controller_3x2
+	url = https://github.com/janelia-kicad/audio_controller_3x2.git
